@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<repositories version="1.0">
+  <repo quality="experimental" status="unofficial">
+    <name>shoober420-overlay</name>
+      <description lang="en">shoober420's Custom Gentoo Overlay.</description>
+        <homepage>https://github.com/shoober420/shoober420-overlay</homepage>
+        <owner type="person">
+            <name>Vincent Grande</name>
+            <email>shoober420@gmail.com</email>
+        </owner>
+        <source type="git">git://github.com/shoober420/shoober420-overlay.git</source>
+        <feed>https://github.com/shoober420/shoober420-overlay/commits/master.atom</feed>
+  </repo>
+</repositories>
