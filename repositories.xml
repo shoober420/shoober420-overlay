@@ -2,7 +2,7 @@
 <repositories version="1.0">
   <repo quality="experimental" status="unofficial">
     <name>shoober420-overlay</name>
-      <description lang="en">shoober420's Custom Gentoo Overlay.</description>
+      <description lang="en">shoober420's Gentoo Overlay.</description>
         <homepage>https://github.com/shoober420/shoober420-overlay</homepage>
         <owner type="person">
             <name>Vincent Grande</name>
