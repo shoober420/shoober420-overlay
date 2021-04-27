@@ -3,7 +3,7 @@
 # Joonas Niilola (juippis)
 # Vincent Grande (shoober420)
 
-EAPI=7
+EAPI=6
 
 # Define what default functions to run
 ETYPE="sources"
