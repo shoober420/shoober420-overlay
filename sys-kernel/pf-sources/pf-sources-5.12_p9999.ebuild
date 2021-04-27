@@ -3,7 +3,7 @@
 # Joonas Niilola (juippis)
 # Vincent Grande (shoober420)
 
-EAPI=6
+EAPI=7
 
 # Define what default functions to run
 ETYPE="sources"
@@ -12,7 +12,7 @@ ETYPE="sources"
 K_EXP_GENPATCHES_NOUSE="1"
 
 # Pull latest genpatches for consistency
-K_GENPATCHES_VER="14"
+K_GENPATCHES_VER="1"
 
 # -pf already sets EXTRAVERSION to kernel Makefile
 K_NOSETEXTRAVERSION="1"
