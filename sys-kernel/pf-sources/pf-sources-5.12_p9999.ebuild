@@ -44,9 +44,7 @@ SRC_URI="
 
 S="${WORKDIR}/linux-${P}"
 
-PATCHES=( 
-                      https://gitlab.com/alfredchen/projectc/raw/master/${SHPV}/prjc_v${SHPV}-${SHPPV}.patch
-)
+PATCHES=( "${DISTDIR}/prjc_v${SHPV}-${SHPPV}.patch" )
 
 K_EXTRAEINFO="For more info on pf-sources and details on how to report problems,
 	see: ${HOMEPAGE}."
