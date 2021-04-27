@@ -24,7 +24,7 @@ K_SECURITY_UNSUPPORTED="1"
 # already included in pf-sources
 K_WANT_GENPATCHES="base extras"
 
-SHPV="5.11"
+SHPV="5.12"
 
 inherit git-r3 kernel-2 optfeature
 
