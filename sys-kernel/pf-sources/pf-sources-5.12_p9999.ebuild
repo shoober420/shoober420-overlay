@@ -25,6 +25,7 @@ K_SECURITY_UNSUPPORTED="1"
 K_WANT_GENPATCHES="base extras"
 
 SHPV="5.12"
+SHPPV="r0"
 
 inherit git-r3 kernel-2 optfeature
 
@@ -38,11 +39,13 @@ EGIT_CHECKOUT_DIR="${WORKDIR}/linux-${P}"
 
 SRC_URI="
 	https://dev.gentoo.org/~mpagano/genpatches/tarballs/genpatches-${SHPV}-${K_GENPATCHES_VER}.base.tar.xz
-	https://dev.gentoo.org/~mpagano/genpatches/tarballs/genpatches-${SHPV}-${K_GENPATCHES_VER}.extras.tar.xz"
+	https://dev.gentoo.org/~mpagano/genpatches/tarballs/genpatches-${SHPV}-${K_GENPATCHES_VER}.extras.tar.xz
+	https://gitlab.com/alfredchen/projectc/raw/master/${SHPV}/prjc_v${SHPV}-${SHPPV}.patch"
 
 S="${WORKDIR}/linux-${P}"
 
 PATCHES=( 
+                      https://gitlab.com/alfredchen/projectc/raw/master/${SHPV}/prjc_v${SHPV}-${SHPPV}.patch
 )
 
 K_EXTRAEINFO="For more info on pf-sources and details on how to report problems,
