@@ -15,7 +15,7 @@ if [[ ${PV} == 9999 ]]; then
 else
         MY_PV=${PV/_rc/-rc}
         SRC_URI="mirror://sourceforge.jp/${PN}/74064/${P}.tar.xz"
-        KEYWORDS="~alpha amd64 arm arm64 hppa ~ia64 ~mips ppc ppc64 sparc x86 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
+        KEYWORDS="~amd64 ~x86"
 fi
 
 LICENSE="GPL-2+"
