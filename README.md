@@ -6,6 +6,7 @@
 * dbus-9999
 * flac-9999
 * fontconfig-9999
+* glib-9999
 * mesa-9999 (builds against llvm-9999)
 * ncurses-9999
 * openal-9999
