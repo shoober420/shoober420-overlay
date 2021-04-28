@@ -17,14 +17,13 @@ if [[ ${PV} == 9999 ]]; then
 else
         MY_PV=${PV/_rc/-rc}
         SRC_URI="https://github.com/kcat/${MY_P}/archive/${MY_PV}.tar.gz -> ${P}.tar.gz"
-        KEYWORDS="~alpha amd64 arm arm64 hppa ~ia64 ~mips ppc ppc64 sparc x86 ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
+        KEYWORDS="~alpha amd64 arm arm64 ~hppa ~ia64 ~mips ppc ppc64 sparc x86 ~amd64-linux ~x86-linux"
 fi
 
 # See https://github.com/kcat/openal-soft/blob/e0097c18b82d5da37248c4823fde48b6e0002cdd/BSD-3Clause
 # Some components are under BSD
 LICENSE="LGPL-2+ BSD"
 SLOT="0"
-KEYWORDS="~alpha amd64 arm arm64 ~hppa ~ia64 ~mips ppc ppc64 sparc x86 ~amd64-linux ~x86-linux"
 IUSE="
 	alsa coreaudio debug jack oss portaudio pulseaudio sdl sndio qt5
 	cpu_flags_x86_sse cpu_flags_x86_sse2 cpu_flags_x86_sse4_1
