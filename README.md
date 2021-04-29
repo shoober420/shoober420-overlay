@@ -9,6 +9,7 @@
 * glib-9999
 * libgudev-9999
 * libinput-9999
+* libsdl2-9999
 * libusb-9999
 * mesa-9999 (builds against llvm-9999)
 * ncurses-9999
