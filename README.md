@@ -8,6 +8,7 @@
 * flac-9999
 * fontconfig-9999
 * glib-9999
+* gtk+-2.24.33
 * libgudev-9999
 * libinput-9999
 * libsdl2-9999
