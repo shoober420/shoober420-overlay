@@ -25,6 +25,7 @@ DEPEND="
 "
 RDEPEND="${DEPEND}"
 BDEPEND="
+        dev-util/gtk-doc
 	>=dev-libs/expat-2.1.0-r3
 	>=dev-libs/glib-2.40:2
 	>=sys-apps/dbus-1.8
