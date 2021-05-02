@@ -5,6 +5,7 @@
 * curl-9999
 * dash-9999
 * dbus-9999
+* dbus-glib-9999
 * flac-9999
 * fontconfig-9999
 * glib-9999
