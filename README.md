@@ -19,6 +19,7 @@
 * openal-9999
 * pango-9999
 * pf-sources-5.12_p9999 (builds against latest stable kernel)
+* pulseaudio-9999
 * wayst-9999
 * xf86-input-libinput-9999
 * yash-9999
