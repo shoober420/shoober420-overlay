@@ -60,8 +60,6 @@ multilib_src_configure() {
 		-Dselinux=false
 		-Dsystemd_journal=false
 		-Dlibaudit=no
-                -Dmodify_system=true
-                
 
 		-Dwext=false
 		-Dwifi=false
@@ -85,15 +83,15 @@ multilib_src_configure() {
 		-Ddhcpcanon=no
 		-Ddhcpcd=no
 
-		-Dintrospection=$(if multilib_is_native_abi; then echo true; else echo false; fi)
-                -Dvapi=$(if multilib_is_use_enable; then echo true; else echo false; fi)
+		-Dintrospection=false
+                -Dvapi=false
 		-Dtests=no
 		-Dmore_asserts=no
 		-Dmore_logging=false
 		-Dvalgrind=no
 		-Dlibpsl=false
 		-Djson_validation=false
-#		-Dcrypto=$(usex nss nss gnutls)
+		-Dcrypto=$(usex nss nss gnutls)
 		-Dqt=false
 	)
 
