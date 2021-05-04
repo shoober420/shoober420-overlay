@@ -9,6 +9,7 @@
 * flac-9999
 * fontconfig-9999
 * glib-9999
+* google-perftools-9999
 * libgudev-9999
 * libinput-9999
 * libnm-glib-9999
