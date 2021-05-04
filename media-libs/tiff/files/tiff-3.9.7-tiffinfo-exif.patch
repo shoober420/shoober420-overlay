@@ -3,7 +3,7 @@ because there isn't any.  Back-patched from an upstream 4.0.2 fix.
 
 This is not a security issue in itself (it crashes, but with a simple NULL
 pointer dereference).  However, our test case for CVE-2012-5581 tickles this
-bug, soo it seems easier to fix this than make a new test case.
+bug, so it seems easier to fix this than make a new test case.
 
 
 diff -Naur tiff-3.9.4.orig/tools/tiffinfo.c tiff-3.9.4/tools/tiffinfo.c
