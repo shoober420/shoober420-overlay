@@ -10,6 +10,7 @@
 * fontconfig-9999
 * glib-9999
 * google-perftools-9999
+* libcurl-debian
 * libgudev-9999
 * libinput-9999
 * libnm-glib-9999
