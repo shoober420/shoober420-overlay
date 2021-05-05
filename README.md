@@ -11,6 +11,7 @@
 * glib-9999
 * google-perftools-9999
 * libcurl-debian
+* libgcrypt-1.5.4-r1
 * libgudev-9999
 * libinput-9999
 * libnm-glib-9999
