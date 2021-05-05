@@ -52,7 +52,7 @@ multilib_src_configure() {
 	ECONF_SOURCE="${S}" \
 	econf \
 		--disable-static \
-		--with-gtk=3 \
+		--with-gtk=2 \
 		$(multilib_native_use_enable introspection)
 }
 
