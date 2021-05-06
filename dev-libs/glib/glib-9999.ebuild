@@ -4,7 +4,7 @@
 EAPI=7
 PYTHON_COMPAT=( python3_{7,8,9} )
 
-inherit flag-o-matic gnome2-utils linux-info meson multilib multilib-minimal python-any-r1 toolchain-funcs xdg
+inherit flag-o-matic gnome.org gnome2-utils linux-info meson multilib multilib-minimal python-any-r1 toolchain-funcs xdg
 
 DESCRIPTION="The GLib library of C routines"
 HOMEPAGE="https://www.gtk.org/"
