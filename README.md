@@ -26,6 +26,7 @@
 * pulseaudio-9999
 * sdl2-image-9999
 * sdl2-mixer-9999
+* sdl2-ttf-9999
 * tiff-3.9.7-r1
 * tiff-9999
 * wayst-9999
