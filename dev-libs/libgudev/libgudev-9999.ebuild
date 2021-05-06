@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit meson multilib-minimal
+inherit gnome2 meson multilib-minimal
 
 DESCRIPTION="GObject bindings for libudev"
 HOMEPAGE="https://wiki.gnome.org/Projects/libgudev"
@@ -45,5 +45,5 @@ multilib_src_configure() {
 }
 
 multilib_src_install() {
-	meson_src_install
+	gnome2_src_install
 }
