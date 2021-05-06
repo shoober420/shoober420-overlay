@@ -14,6 +14,7 @@
 * libgcrypt-1.5.4-r1
 * libgudev-9999
 * libinput-9999
+* libjpeg-turbo-9999
 * libnm-glib-9999
 * libsdl2-9999
 * libunwind-9999
