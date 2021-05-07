@@ -53,11 +53,10 @@ else
 	: ${GNOME_ORG_PVP:=$(ver_cut 1-2)}
 fi
 
-
-if [[ ${PV} == 9999 ]]; then
-	inherit git-r3
+if [[ ${PV} == "9999" ]] || [[ ${PV} == "3.9999" ]]; then
+        inherit git-r3
 else
-SRC_URI="mirror://gnome/sources/${GNOME_ORG_MODULE}/${GNOME_ORG_PVP}/${GNOME_ORG_MODULE}-${PV}.tar.${GNOME_TARBALL_SUFFIX}"	
+SRC_URI="mirror://gnome/sources/${GNOME_ORG_MODULE}/${GNOME_ORG_PVP}/${GNOME_ORG_MODULE}-${PV}.tar.${GNOME_TARBALL_SUFFIX}"
 fi
 
 S="${WORKDIR}/${GNOME_ORG_MODULE}-${PV}"
