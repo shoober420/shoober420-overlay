@@ -22,6 +22,7 @@
 * libsdl2-9999
 * libunwind-9999
 * libusb-9999
+* libX11-9999
 * libXcursor-9999
 * mesa-9999 (builds against llvm-9999)
 * ncurses-9999
