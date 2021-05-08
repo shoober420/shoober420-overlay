@@ -8,6 +8,7 @@
 * dbus-glib-9999
 * flac-9999
 * fontconfig-9999
+* gdk-pixbuf-9999
 * glib-9999
 * google-perftools-9999
 * gtk+-3.9999
