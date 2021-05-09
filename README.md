@@ -35,6 +35,7 @@
 * libXcursor-9999
 * mesa-9999 (builds against llvm-9999)
 * ncurses-9999
+* nettle-9999
 * npth-9999
 * openal-9999
 * p11-kit-9999
