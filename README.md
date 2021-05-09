@@ -27,6 +27,7 @@
 * librsvg-9999 (requires FEATURES="-network-sandbox")
 * libsdl2-9999
 * libtasn1-9999
+* libtheora-9999
 * libunwind-9999
 * libusb-9999
 * libvorbis-9999
