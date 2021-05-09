@@ -25,6 +25,7 @@
 * libpciaccess-9999
 * librsvg-9999 (requires FEATURES="-network-sandbox")
 * libsdl2-9999
+* libtasn1-9999
 * libunwind-9999
 * libusb-9999
 * libX11-9999
