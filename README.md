@@ -22,6 +22,7 @@
 * libgudev-9999
 * libinput-9999
 * libjpeg-turbo-9999
+* libksba-9999
 * libnm-glib-9999
 * libogg-9999
 * libpciaccess-9999
