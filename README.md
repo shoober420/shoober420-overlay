@@ -41,6 +41,7 @@
 * sdl2-mixer-9999
 * sdl2-net-9999
 * sdl2-ttf-9999
+* sqlite-9999
 * tiff-3.9.7-r1
 * tiff-9999
 * wayst-9999
