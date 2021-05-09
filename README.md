@@ -18,6 +18,7 @@
 * libcurl-debian
 * libgcrypt-1.5.4-r1
 * libgcrypt-9999
+* libgpg-error-9999
 * libgudev-9999
 * libinput-9999
 * libjpeg-turbo-9999
