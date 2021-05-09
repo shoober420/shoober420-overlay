@@ -7,6 +7,7 @@
 * dash-9999
 * dbus-9999
 * dbus-glib-9999
+* elfutils-9999
 * flac-9999
 * fontconfig-9999
 * gdk-pixbuf-9999
