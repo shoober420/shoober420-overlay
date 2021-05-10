@@ -64,4 +64,5 @@
 * xcb-proto-9999
 * xf86-input-libinput-9999
 * yash-9999
+* zenity-9999
 * zstd-9999
