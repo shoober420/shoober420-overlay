@@ -45,6 +45,7 @@
 * ncurses-9999
 * nettle-9999
 * npth-9999
+* nss-9999
 * openal-9999
 * p11-kit-9999
 * pam-9999
