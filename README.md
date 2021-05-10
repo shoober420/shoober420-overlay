@@ -59,5 +59,6 @@
 * tiff-3.9.7-r1
 * tiff-9999
 * wayst-9999
+* xcb-proto-9999
 * xf86-input-libinput-9999
 * yash-9999
