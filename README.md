@@ -16,6 +16,7 @@
 * gnutls-9999 (requires FEATURES="-network-sandbox")
 * google-perftools-9999
 * gtk+-3.9999
+* icu-9999
 * libassuan-9999
 * libcurl-debian
 * libgcrypt-1.5.4-r1
