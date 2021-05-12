@@ -44,16 +44,15 @@ src_prepare() {
 	use elibc_musl && eapply "${FILESDIR}"/${PN}-4.21-ipv6-musl-support.patch
 
 	# rename configure.in to configure.ac for new autotools compatibility
-#	if [[ -e "${S}"/configure.in ]] ; then
-#		einfo "Renaming configure.in to configure.ac"
-#		mv "${S}"/configure.{in,ac} || die
-#	else
-#		elog "configure.in rename logic can be removed from ebuild."
-#	fi
+	if [[ -e "${S}"/configure.in ]] ; then
+		einfo "Renaming configure.in to configure.ac"
+		mv "${S}"/configure.{in,ac} || die
+	else
+		elog "configure.in rename logic can be removed from ebuild."
+	fi
 
 	# We must run eautoconf to regenerate configure
-#	eautoconf      
-        eautoreconf         
+	eautoconf              
 
 	# make sure it won't find Perl out of Prefix
 	sed -i -e "s/perl5//g" "${S}"/configure || die
