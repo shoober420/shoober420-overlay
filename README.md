@@ -20,7 +20,6 @@
 * icu-9999
 * libassuan-9999
 * libcurl-debian
-* libgcrypt-1.5.4-r1
 * libgcrypt-9999
 * libgpg-error-9999
 * libgudev-9999
