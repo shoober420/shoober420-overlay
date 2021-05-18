@@ -66,6 +66,7 @@ src_configure() {
 		--without-btrfs
 		--without-group-name-max-length
 		--without-tcb
+		--disable-subordinate-ids
 		$(use_enable nls)
 		$(use_with acl)
 		$(use_with audit)
