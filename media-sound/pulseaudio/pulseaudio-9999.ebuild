@@ -133,6 +133,7 @@ DEPEND="${RDEPEND}
 	X? ( x11-base/xorg-proto )
 	dev-libs/libatomic_ops
 	dev-libs/libltdl:0[${MULTILIB_USEDEP}]
+	app-doc/doxygen
 "
 # This is a PDEPEND to avoid a circular dep
 # TODO: Verify that alsa-plugins actually needs matching ${MULTILIB_USEDEP}
