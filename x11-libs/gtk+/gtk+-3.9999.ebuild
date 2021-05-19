@@ -121,14 +121,14 @@ PATCHES=(
 	"${FILESDIR}"/${PN}-3.22.20-libcloudproviders-automagic.patch
 )
 
-strip_builddir() {
-	local rule=$1
-	shift
-	local directory=$1
-	shift
-	sed -e "s/^\(${rule} =.*\)${directory}\(.*\)$/\1\2/" -i $@ \
-		|| die "Could not strip director ${directory} from build."
-}
+#strip_builddir() {
+#	local rule=$1
+#	shift
+#	local directory=$1
+#	shift
+#	sed -e "s/^\(${rule} =.*\)${directory}\(.*\)$/\1\2/" -i $@ \
+#		|| die "Could not strip director ${directory} from build."
+#}
 
 src_prepare() {
 
@@ -165,14 +165,14 @@ multilib_src_configure() {
 		CUPS_CONFIG="${EPREFIX}/usr/bin/${CHOST}-cups-config"
 	)
 
-	if use wayland; then
-		myconf+=(
+#	if use wayland; then
+#		myconf+=(
 			# Include wayland immodule into gtk itself, to avoid problems like
 			# https://gitlab.gnome.org/GNOME/gnome-shell/issues/109 from a
 			# user overridden GTK_IM_MODULE envvar
-			--with-included-immodules=wayland
-		)
-	fi;
+#			--with-included-immodules=wayland
+#		)
+#	fi;
 
 	ECONF_SOURCE=${S} gnome2_src_configure "${myconf[@]}"
 
