@@ -1,6 +1,7 @@
 # shoober420-overlay
 
 * alsa-lib-9999
+* alsa-utils-9999
 * ananicy-9999
 * atk-9999
 * cairo-9999 (cairo-1.16.0-binutils-2.34.patch removed)
