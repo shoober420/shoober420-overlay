@@ -25,6 +25,7 @@
 * libgcrypt-9999
 * libgpg-error-9999
 * libgudev-9999
+* libidn2-9999
 * libinput-9999
 * libjpeg-turbo-9999
 * libksba-9999
