@@ -25,6 +25,7 @@
 * gtk+-3.9999
 * icu-9999
 * libassuan-9999
+* libcap-9999
 * libcurl-debian
 * libgcrypt-9999
 * libgpg-error-9999
