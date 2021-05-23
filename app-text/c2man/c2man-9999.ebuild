@@ -5,8 +5,8 @@ EAPI=7
 
 inherit toolchain-funcs
 
-DESCRIPTION="A free implementation of the unicode bidirectional algorithm"
-HOMEPAGE="https://fribidi.org/"
+DESCRIPTION="Extracts C source code comments into manual documentation"
+HOMEPAGE="https://github.com/fribidi/c2man"
 
 if [[ ${PV} == 9999 ]]; then
         inherit git-r3
@@ -34,6 +34,5 @@ src_compile() {
 }
 
 src_install() {
-#       default
-        dobin c2man
+       dobin c2man
 }
