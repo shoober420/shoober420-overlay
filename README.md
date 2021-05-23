@@ -17,6 +17,7 @@
 * expat-9999
 * flac-9999
 * fontconfig-9999
+* fribidi-9999
 * gdk-pixbuf-9999
 * glib-9999
 * gmp-9999
