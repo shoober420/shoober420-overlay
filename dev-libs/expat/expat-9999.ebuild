@@ -3,7 +3,7 @@
 
 EAPI=7
 AUTOTOOLS_AUTO_DEPEND=no
-inherit autotools multilib-minimal usr-ldscript cmake
+inherit autotools multilib-minimal usr-ldscript cmake cmake-multilib
 
 DESCRIPTION="Stream-oriented XML parser library"
 HOMEPAGE="https://libexpat.github.io/"
@@ -21,87 +21,89 @@ BDEPEND="unicode? ( ${AUTOTOOLS_DEPEND} )"
 
 DOCS=( README.md )
 
-S="${WORKDIR}/${PN}-${PV}/${PN}"
+S="${WORKDIR}/${PN}-${PV}/expat"
 
 src_prepare() {
 	default
 
 	# fix interpreter to be a recent/good shell
-	sed -i -e "1s:/bin/sh:${BASH}:" conftools/get-version.sh || die
-	if use unicode; then
-		cp -R "${S}" "${S}"w || die
-		pushd "${S}"w >/dev/null
-		find -name Makefile.am \
-			-exec sed \
-			-e 's,libexpat\.la,libexpatw.la,' \
-			-e 's,libexpat_la,libexpatw_la,' \
-			-i {} + || die
-		eautoreconf
-		popd >/dev/null
-	fi
-
-        cmake_src_prepare
+#	sed -i -e "1s:/bin/sh:${BASH}:" conftools/get-version.sh || die
+#	if use unicode; then
+#		cp -R "${S}" "${S}"w || die
+#		pushd "${S}"w >/dev/null
+#		find -name Makefile.am \
+#			-exec sed \
+#			-e 's,libexpat\.la,libexpatw.la,' \
+#			-e 's,libexpat_la,libexpatw_la,' \
+#			-i {} + || die
+#		eautoreconf
+#		popd >/dev/null
+#	fi
+       cmake_src_prepare
 }
 
 multilib_src_configure() {
-	local myconf="$(use_enable static-libs static) --without-docbook"
+#	local myconf="$(use_enable static-libs static) --without-docbook"
 
-	mkdir -p "${BUILD_DIR}"w || die
+#	mkdir -p "${BUILD_DIR}"w || die
 
-	if use unicode; then
-		pushd "${BUILD_DIR}"w >/dev/null
-		CPPFLAGS="${CPPFLAGS} -DXML_UNICODE" ECONF_SOURCE="${S}"w econf ${myconf}
-		popd >/dev/null
-	fi
+#	if use unicode; then
+#		pushd "${BUILD_DIR}"w >/dev/null
+#		CPPFLAGS="${CPPFLAGS} -DXML_UNICODE" ECONF_SOURCE="${S}"w econf ${myconf}
+#		popd >/dev/null
+#	fi
 
-	ECONF_SOURCE="${S}" econf ${myconf}
+#	ECONF_SOURCE="${S}" econf ${myconf}
+        cmake_src_configure
 }
 
 multilib_src_compile() {
-	emake
+#	emake
 
-	if use unicode; then
-		pushd "${BUILD_DIR}"w >/dev/null
-		emake -C lib
-		popd >/dev/null
-	fi
+#	if use unicode; then
+#		pushd "${BUILD_DIR}"w >/dev/null
+#		emake -C lib
+#		popd >/dev/null
+#	fi
+        cmake_src_compile
 }
 
 multilib_src_install() {
-	emake install DESTDIR="${D}"
+#	emake install DESTDIR="${D}"
 
-	if use unicode; then
-		pushd "${BUILD_DIR}"w >/dev/null
-		emake -C lib install DESTDIR="${D}"
-		popd >/dev/null
+#	if use unicode; then
+#		pushd "${BUILD_DIR}"w >/dev/null
+#		emake -C lib install DESTDIR="${D}"
+#		popd >/dev/null
 
-		pushd "${ED}"/usr/$(get_libdir)/pkgconfig >/dev/null
-		cp expat.pc expatw.pc
-		sed -i -e '/^Libs/s:-lexpat:&w:' expatw.pc || die
-		popd >/dev/null
-	fi
+#		pushd "${ED}"/usr/$(get_libdir)/pkgconfig >/dev/null
+#		cp expat.pc expatw.pc
+#		sed -i -e '/^Libs/s:-lexpat:&w:' expatw.pc || die
+#		popd >/dev/null
+#	fi
 
-	if multilib_is_native_abi ; then
-		# libgeom in /lib and ifconfig in /sbin require libexpat on FreeBSD since
+#	if multilib_is_native_abi ; then
+#		# libgeom in /lib and ifconfig in /sbin require libexpat on FreeBSD since
 		# we stripped the libbsdxml copy starting from freebsd-lib-8.2-r1
-		use elibc_FreeBSD && gen_usr_ldscript -a expat
-	fi
+#		use elibc_FreeBSD && gen_usr_ldscript -a expat
+#	fi
+        cmake_src_install
 }
 
 #multilib_src_install_all() {
 #	einstalldocs
-#
+
 #	doman doc/xmlwf.1
-#
+
 	# Note: Use of HTML_DOCS would add unwanted "doc" subfolder
 #	docinto html
 #	dodoc doc/*.{css,html,png}
-#
+
 #	if use examples; then
 #		docinto examples
 #		dodoc examples/*.c
 #		docompress -x usr/share/doc/${PF}/examples
 #	fi
-#
+
 #	find "${D}" -name '*.la' -type f -delete || die
 #}
