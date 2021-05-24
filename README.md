@@ -41,6 +41,7 @@
 * libjpeg-turbo-9999
 * libksba-9999
 * libmnl-9999
+* libndp-9999
 * libnm-glib-9999
 * libogg-9999
 * libpciaccess-9999
