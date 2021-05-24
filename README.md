@@ -75,6 +75,7 @@
 * sdl2-net-9999
 * sdl2-ttf-9999
 * shadow-9999
+* speexdsp-9999
 * sqlite-9999
 * tiff-3.9.7-r1
 * tiff-9999
