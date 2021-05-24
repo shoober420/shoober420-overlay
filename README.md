@@ -62,6 +62,7 @@
 * nspr-9999
 * nss-9999
 * openal-9999
+* openldap-9999
 * p11-kit-9999
 * pam-9999
 * pango-9999
