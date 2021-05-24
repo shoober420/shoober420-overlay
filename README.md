@@ -9,6 +9,7 @@
 * atk-9999
 * c2man-9999
 * cairo-9999 (cairo-1.16.0-binutils-2.34.patch removed)
+* cups-9999 (cups-1.4.4-nostrip.patch removed)
 * curl-9999
 * dash-9999
 * dbus-9999
