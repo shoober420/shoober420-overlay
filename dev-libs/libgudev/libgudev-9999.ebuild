@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit gnome2 meson multilib-minimal
+inherit gnome2 meson multilib-minimal xdg
 
 DESCRIPTION="GObject bindings for libudev"
 HOMEPAGE="https://wiki.gnome.org/Projects/libgudev"
@@ -34,16 +34,20 @@ BDEPEND="
 	virtual/pkgconfig
 "
 
+src_prepare() {
+        default
+        xdg_src_preapre
+}
+
 multilib_src_configure() {
-	local myconf=(
-		$(multilib_native_use_enable introspection)
-		$(use_enable static-libs static)
-		--disable-umockdev # umockdev tests currently don't pass (might need extra setup)
+	local emesonargs=(
+		-Dintrospection="$(multilib_native_usex introspection enabled disabled)"
+		-Dtests=disabled
+                -Dgtk-doc=disabled
 	)
-	local ECONF_SOURCE="${S}"
         meson_src_configure
 }
 
 multilib_src_install() {
-	gnome2_src_install
+	meson_src_install
 }
