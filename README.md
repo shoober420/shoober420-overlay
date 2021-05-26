@@ -71,6 +71,7 @@
 * p11-kit-9999
 * pam-9999
 * pango-9999
+* pciutils-9999
 * pf-sources-5.12_p9999 (builds against latest stable kernel)
 * pulseaudio-9999
 * sdl2-image-9999
