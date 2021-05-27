@@ -7,6 +7,7 @@
 * at-spi2-atk-9999
 * at-spi2-core-9999
 * atk-9999
+* binutils-libs-9999
 * c2man-9999
 * cairo-9999 (1.16.0-binutils-2.34.patch removed)
 * coreutils-9999 (requires FEATURES="-network-sandbox")
