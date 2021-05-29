@@ -74,6 +74,7 @@
 * pango-9999
 * pciutils-9999
 * pf-sources-5.12_p9999 (builds against latest stable kernel)
+* pipewire-9999 (revert-openaptx-restriction.patch removed)
 * pulseaudio-9999
 * sdl2-image-9999
 * sdl2-mixer-9999
