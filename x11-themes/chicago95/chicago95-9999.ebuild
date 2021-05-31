@@ -5,10 +5,10 @@ EAPI=7
 
 inherit font xdg
 
-#REPO_NAME="Chicago95"
+REPO_NAME="Chicago95"
 
 DESCRIPTION="Linux rendition of everyone's favourite 1995 Microsoft OS"
-HOMEPAGE="https://github.com/grassmunk/${REPO_NAME}"
+HOMEPAGE="https://github.com/grassmunk/Chicago95"
 
 if [[ ${PV} == 9999 ]]; then
         inherit git-r3
@@ -37,7 +37,6 @@ src_install() {
 	# the 'plus' GUI for converting Windows themes.
 	emake -j1 DESTDIR="${D}" DOCDIR="${ED}/usr/share/doc/${PF}" \
 		install_cursors \
-		install_doc \
 		install_fonts \
 		$(usex gtk install_gtk_theme "") \
 		install_icons \
