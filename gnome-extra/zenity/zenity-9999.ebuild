@@ -30,21 +30,21 @@ RDEPEND="
 DEPEND="${RDEPEND}"
 BDEPEND="
 	dev-util/itstool
+        app-text/yelp-tools
 	>=sys-devel/gettext-0.19.4
 	virtual/pkgconfig
 "
 
 src_prepare() {
       default
-      eautoreconf
+      ./autogen.sh || die
 }
 
 src_configure() {
 	gnome2_src_configure \
-		$(usex debug --enable-debug=yes ' ') \
-		$(use_enable libnotify) \
-		$(use_enable webkit webkitgtk) \
-		PERL=$(type -P false)
+         --disable-debug \
+         --disable-libnotify \
+         --disable-webkitgtk
 }
 
 src_install() {
