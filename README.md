@@ -49,6 +49,7 @@
 * libnm-glib-9999
 * libogg-9999
 * libpciaccess-9999
+* libpng-9999
 * librsvg-9999 (requires FEATURES="-network-sandbox")
 * libsdl2-9999
 * libtasn1-9999
