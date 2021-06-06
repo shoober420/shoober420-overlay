@@ -29,6 +29,7 @@
 * gnupg-9999
 * gnutls-9999 (requires FEATURES="-network-sandbox")
 * google-perftools-9999
+* graphite2-9999
 * gtk+-3.9999
 * icu-9999
 * libassuan-9999
