@@ -67,6 +67,7 @@
 * libXi-9999
 * libxkbcommon-9999
 * libxml2-9999
+* libxshmfence-9999
 * lz4-9999
 * mesa-9999 (builds against llvm-9999)
 * ncurses-9999
