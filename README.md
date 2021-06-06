@@ -64,6 +64,7 @@
 * libXcursor-9999
 * libXfixes-9999
 * libXft-9999
+* libXi-9999
 * libxkbcommon-9999
 * libxml2-9999
 * lz4-9999
