@@ -54,7 +54,7 @@
 * libsdl2-9999
 * libtasn1-9999
 * libtheora-9999
-* libunistring-9999
+* libunistring-9999 (requires FEATURES="-network-sandbox")
 * libunwind-9999
 * libusb-9999
 * libvorbis-9999
