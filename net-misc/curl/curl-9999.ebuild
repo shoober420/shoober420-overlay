@@ -232,7 +232,7 @@ multilib_src_configure() {
 		--without-hyper
 		$(use_with idn libidn2)
 		$(use_with kerberos gssapi "${EPREFIX}"/usr)
-		$(use_with metalink libmetalink)
+		#$(use_with metalink libmetalink)
 		--without-libgsasl
 		--without-libpsl
 		$(use_with nghttp3)
