@@ -70,6 +70,7 @@
 * libXfixes-9999
 * libXft-9999
 * libXi-9999
+* libXinerama-9999
 * libxkbcommon-9999
 * libxml2-9999
 * libXScrnSaver-9999
