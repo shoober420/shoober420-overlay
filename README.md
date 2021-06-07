@@ -20,6 +20,7 @@
 * efibootmgr-9999
 * elfutils-9999
 * expat-9999
+* freeglut-9999
 * flac-9999
 * fontconfig-9999
 * fribidi-9999
