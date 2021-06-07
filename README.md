@@ -60,6 +60,7 @@
 * libusb-9999
 * libvorbis-9999
 * libX11-9999
+* libXau-9999
 * libxcb-9999
 * libXcursor-9999
 * libXfixes-9999
