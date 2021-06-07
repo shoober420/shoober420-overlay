@@ -211,12 +211,12 @@ multilib_src_configure() {
 		--enable-hidden-symbols
 		--enable-http-auth
 		$(use_enable ipv6)
-		--enable-largefile
-		--enable-manual
+		--disable-largefile
+		--disable-manual
 		--enable-mime
-		--enable-netrc
+		--disable-netrc
 		$(use_enable progress-meter)
-		--enable-proxy
+		--disable-proxy
 		--disable-sspi
 		$(use_enable static-libs static)
 		$(use_enable threads threaded-resolver)
@@ -226,7 +226,7 @@ multilib_src_configure() {
 		--without-bearssl
 		$(use_with brotli)
 		--without-cyassl
-		--without-darwinssl
+		#--without-darwinssl
 		--without-fish-functions-dir
 		$(use_with http2 nghttp2)
 		--without-hyper
