@@ -62,6 +62,7 @@
 * libX11-9999
 * libXau-9999
 * libxcb-9999
+* libXcomposite-9999
 * libXcursor-9999
 * libXfixes-9999
 * libXft-9999
