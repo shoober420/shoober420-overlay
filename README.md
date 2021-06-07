@@ -65,6 +65,7 @@
 * libXcomposite-9999
 * libXcursor-9999
 * libXdamage-9999
+* libXdmcp-9999
 * libXfixes-9999
 * libXft-9999
 * libXi-9999
