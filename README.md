@@ -35,6 +35,7 @@
 * gtk+-3.9999
 * icu-9999
 * libassuan-9999
+* libcaca-9999
 * libcap-9999
 * libcurl-debian
 * libffi-9999
