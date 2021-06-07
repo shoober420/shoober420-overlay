@@ -24,7 +24,7 @@
 * fontconfig-9999
 * fribidi-9999
 * gdk-pixbuf-9999
-* gettext-9999
+* gettext-9999 (requires FEATURES="-network-sandbox")
 * glib-9999
 * gmp-9999
 * gnupg-9999
@@ -67,6 +67,7 @@
 * libXi-9999
 * libxkbcommon-9999
 * libxml2-9999
+* libXScrnSaver-9999
 * libxshmfence-9999
 * lz4-9999
 * mesa-9999 (builds against llvm-9999)
