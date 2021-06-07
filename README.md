@@ -76,6 +76,7 @@
 * libXrender-9999
 * libXScrnSaver-9999
 * libxshmfence-9999
+* libXxf86vm-9999
 * lz4-9999
 * mesa-9999 (builds against llvm-9999)
 * ncurses-9999
