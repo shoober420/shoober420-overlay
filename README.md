@@ -42,6 +42,7 @@
 * libgcrypt-9999
 * libgpg-error-9999
 * libgudev-9999
+* libICE-9999
 * libidn-9999 (requires FEATURES="-network-sandbox" / git-9999-r1)
 * libidn2-9999 (requires FEATURES="-network-sandbox")
 * libinput-9999
