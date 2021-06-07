@@ -73,6 +73,7 @@
 * libXinerama-9999
 * libxkbcommon-9999
 * libxml2-9999
+* libXrender-9999
 * libXScrnSaver-9999
 * libxshmfence-9999
 * lz4-9999
