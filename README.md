@@ -129,6 +129,7 @@
 * xbitmaps-9999
 * xcb-proto-9999
 * xdg-user-dirs-9999
+* xdg-utils-9999
 * xf86-input-libinput-9999
 * xinit-9999
 * xkbcomp-9999
