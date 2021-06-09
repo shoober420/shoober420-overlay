@@ -2,6 +2,7 @@
 
 * acl-9999
 * alsa-lib-9999
+* alsa-plugins-9999
 * alsa-topology-conf-9999
 * alsa-ucm-conf-9999
 * alsa-utils-9999
