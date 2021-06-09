@@ -127,6 +127,7 @@
 * xkbcomp-9999
 * xprop-9999
 * xrdb-9999
+* xset-9999
 * xtrans-9999
 * yash-9999
 * zenity-9999
