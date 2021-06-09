@@ -92,6 +92,7 @@
 * libXxf86vm-9999
 * lz4-9999
 * mesa-9999 (builds against llvm-9999)
+* mkfontscale-9999
 * ncurses-9999
 * nettle-9999
 * networkmanager-9999
