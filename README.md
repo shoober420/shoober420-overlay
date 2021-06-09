@@ -109,6 +109,7 @@
 * pipewire-9999 (revert-openaptx-restriction.patch removed)
 * procps-9999
 * pulseaudio-9999
+* rgb-9999
 * sdl2-image-9999
 * sdl2-mixer-9999
 * sdl2-net-9999
