@@ -41,6 +41,7 @@
 * libcap-9999
 * libcurl-debian
 * libffi-9999
+* libfontenc-9999
 * libgcrypt-9999
 * libgpg-error-9999
 * libgudev-9999
