@@ -34,6 +34,7 @@
 * graphite2-9999
 * gtk+-3.9999
 * htop-9999
+* iceauth-9999
 * icu-9999
 * libassuan-9999
 * libcaca-9999
