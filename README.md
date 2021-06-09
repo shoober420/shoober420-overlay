@@ -3,6 +3,7 @@
 * acl-9999
 * alsa-lib-9999
 * alsa-topology-conf-9999
+* alsa-ucm-conf-9999
 * alsa-utils-9999
 * ananicy-9999
 * at-spi2-atk-9999
