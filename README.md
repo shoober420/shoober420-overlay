@@ -80,6 +80,7 @@
 * libXi-9999
 * libXinerama-9999
 * libxkbcommon-9999
+* libxkbfile-9999
 * libxml2-9999
 * libXmu-9999
 * libXpm-9999
