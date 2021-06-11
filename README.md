@@ -3,7 +3,7 @@
 * acl-9999
 * alsa-lib-9999
 * alsa-plugins-9999
-* alsa-topology-conf-9999
+* alsa-topology-conf-9999 (requires FEATURES="-sandbox -usersandbox")
 * alsa-ucm-conf-9999
 * alsa-utils-9999
 * ananicy-9999
