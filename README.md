@@ -7,6 +7,7 @@
 * alsa-ucm-conf-9999
 * alsa-utils-9999
 * ananicy-9999
+* appres-9999
 * at-spi2-atk-9999
 * at-spi2-core-9999
 * atk-9999
