@@ -17,7 +17,7 @@ KEYWORDS="~alpha amd64 arm arm64 ~hppa ~ia64 ~mips ppc ppc64 ~riscv ~s390 sparc 
 
 src_prepare() {
 	default
-	./autogen.sh
+	./autogen.sh || die
 }
 
 # there is nothing to compile for this package, all its contents are produced by
