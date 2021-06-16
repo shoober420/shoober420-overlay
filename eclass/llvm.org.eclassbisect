@@ -1,4 +1,4 @@
-Copyright 2019-2021 Gentoo Authors
+# Copyright 2019-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 # @ECLASS: llvm.org.eclass
@@ -52,16 +52,13 @@ _LLVM_MASTER_MAJOR=13
 # Source type to use: 'git' or 'tar'.
 if [[ -z ${_LLVM_SOURCE_TYPE+1} ]]; then
 	if [[ ${PV} == *.9999 ]]; then
-#		_LLVM_SOURCE_TYPE=git
-                inherit git-r3
-		EGIT_REPO_URI="https://github.com/llvm/llvm-project.git"
-		EGIT_COMMIT="f776108168ab1079fe6131576679431bec1f562e"
+		_LLVM_SOURCE_TYPE=git
 	else
 		_LLVM_SOURCE_TYPE=tar
 	fi
 fi
 
-#[[ ${_LLVM_SOURCE_TYPE} == git ]] && inherit git-r3
+[[ ${_LLVM_SOURCE_TYPE} == git ]] && inherit git-r3
 
 [[ ${PV} == ${_LLVM_MASTER_MAJOR}.* && ${_LLVM_SOURCE_TYPE} == tar ]] &&
 	die "${ECLASS}: Release ebuild for master branch?!"
@@ -114,8 +111,9 @@ llvm.org_set_globals() {
 		fi
 	fi
 
-#	if [[ ${_LLVM_SOURCE_TYPE} == git ]]; then
-#		EGIT_REPO_URI="https://github.com/llvm/llvm-project.git"
+	if [[ ${_LLVM_SOURCE_TYPE} == git ]]; then
+		EGIT_REPO_URI="https://github.com/llvm/llvm-project.git"
+		EGIT_COMMIT="4124bca309586234748c9c99600ec2f3b2f6d775"
 
 		[[ ${PV} != ${_LLVM_MASTER_MAJOR}.* ]] &&
 			EGIT_BRANCH="release/${PV%%.*}.x"
