@@ -146,6 +146,7 @@ LLVM_MAX_SLOT="13"
 LLVM_DEPSTR="
 	|| (
 		sys-devel/llvm:13[${MULTILIB_USEDEP}]
+		sys-devel/llvm:12[${MULTILIB_USEDEP}]
                 sys-devel/llvm:11[${MULTILIB_USEDEP}]
 		sys-devel/llvm:10[${MULTILIB_USEDEP}]
 	)
@@ -497,10 +498,8 @@ multilib_src_configure() {
 	fi
 
 	driver_list() {
-		local drivers="$(sort -u <<< "${1// /$'
-'}")"
-		echo "${drivers//$'
-'/,}"
+		local drivers="$(sort -u <<< "${1// /$'\n'}")"
+		echo "${drivers//$'\n'/,}"
 	}
 
 	emesonargs+=(
