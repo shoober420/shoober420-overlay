@@ -119,11 +119,11 @@ meson_native_feature() {
 src_prepare() {
 	default
 
-	if ! use systemd; then
+#	if ! use systemd; then
 		# This can be applied non-conditionally but would make for a
 		# significantly worse user experience on systemd then.
-		eapply "${FILESDIR}"/${PN}-0.3.25-non-systemd-integration.patch
-	fi
+#		eapply "${FILESDIR}"/${PN}-0.3.25-non-systemd-integration.patch
+#	fi
 
 	einfo "Generating ${limitsdfile}"
 	cat > ${limitsdfile} <<- EOF || die
