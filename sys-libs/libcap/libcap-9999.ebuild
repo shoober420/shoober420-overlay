@@ -30,12 +30,12 @@ DEPEND="${RDEPEND}
 # Requires test suite being run as root (via sudo)
 RESTRICT="test"
 
-PATCHES=(
-	"${FILESDIR}"/${PN}-2.48-build-system-fixes.patch
-	"${FILESDIR}"/${PN}-2.38-no_perl.patch
-	"${FILESDIR}"/${PN}-2.25-ignore-RAISE_SETFCAP-install-failures.patch
-	"${FILESDIR}"/${PN}-2.21-include.patch
-)
+#PATCHES=(
+#	"${FILESDIR}"/${PN}-2.48-build-system-fixes.patch
+#	"${FILESDIR}"/${PN}-2.38-no_perl.patch
+#	"${FILESDIR}"/${PN}-2.25-ignore-RAISE_SETFCAP-install-failures.patch
+#	"${FILESDIR}"/${PN}-2.21-include.patch
+#)
 
 src_prepare() {
 	default
