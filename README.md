@@ -143,6 +143,7 @@
 * xscreensaver-9999
 * xset-9999
 * xtrans-9999
+* xwayland-9999
 * xwininfo-9999
 * yash-9999
 * zenity-9999
