@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
-inherit gnome2 autotools
+inherit gnome2 autotools meson xdg
 
 DESCRIPTION="Tool to display dialogs from the commandline and shell scripts"
 HOMEPAGE="https://wiki.gnome.org/Projects/Zenity"
@@ -37,19 +37,27 @@ BDEPEND="
 
 src_prepare() {
       default
-      ./autogen.sh || die
+      xdg_src_preapre
+      gnome2_environment_reset
 }
 
 src_configure() {
-	gnome2_src_configure \
-         --disable-debug \
-         --disable-libnotify \
-         --disable-webkitgtk
+	local emesonargs=(
+	-Dlibnotify=false
+        -Dwebkitgtk=false
+	)
+	meson_src_configure
+}
+
+src_compile() {
+	meson_src_compile
 }
 
 src_install() {
-	gnome2_src_install
+	meson_src_install
+}
 
-	# Not really needed and prevent us from needing perl
-	rm "${ED}/usr/bin/gdialog" || die "rm gdialog failed!"
+pkg_postinst() {
+	xdg_pkg_postinst
+	gnome2_schemas_update
 }
