@@ -138,6 +138,7 @@
 * xf86-input-libinput-9999
 * xinit-9999
 * xkbcomp-9999
+* xorg-server-9999 (radeon/wayland)
 * xprop-9999
 * xrdb-9999
 * xscreensaver-9999
