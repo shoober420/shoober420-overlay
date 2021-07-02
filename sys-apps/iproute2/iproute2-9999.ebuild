@@ -90,40 +90,40 @@ src_prepare() {
 }
 
 src_configure() {
-#	tc-export AR CC PKG_CONFIG
+	tc-export AR CC PKG_CONFIG
 
 	# This sure is ugly.  Should probably move into toolchain-funcs at some point.
-#	local setns
-#	pushd "${T}" >/dev/null
-#	printf '#include <sched.h>\nint main(){return setns(0, 0);}\n' > test.c
-#	${CC} ${CFLAGS} ${CPPFLAGS} -D_GNU_SOURCE ${LDFLAGS} test.c >&/dev/null && setns=y || setns=n
-#	echo 'int main(){return 0;}' > test.c
-#	${CC} ${CFLAGS} ${CPPFLAGS} ${LDFLAGS} test.c -lresolv >&/dev/null || sed -i '/^LDLIBS/s:-lresolv::' "${S}"/Makefile
-#	popd >/dev/null
+	local setns
+	pushd "${T}" >/dev/null
+	printf '#include <sched.h>\nint main(){return setns(0, 0);}\n' > test.c
+	${CC} ${CFLAGS} ${CPPFLAGS} -D_GNU_SOURCE ${LDFLAGS} test.c >&/dev/null && setns=y || setns=n
+	echo 'int main(){return 0;}' > test.c
+	${CC} ${CFLAGS} ${CPPFLAGS} ${LDFLAGS} test.c -lresolv >&/dev/null || sed -i '/^LDLIBS/s:-lresolv::' "${S}"/Makefile
+	popd >/dev/null
 
 	# run "configure" script first which will create "config.mk"...
 #	LIBBPF_FORCE="$(usex bpf on off)" \
 #	econf
+	./configure || die
 
 	# ...now switch on/off requested features via USE flags
 	# this is only useful if the test did not set other things, per bug #643722
-#	cat <<-EOF >> config.mk
-#	TC_CONFIG_ATM := $(usex atm y n)
-#	TC_CONFIG_XT  := $(usex iptables y n)
-#	TC_CONFIG_NO_XT := $(usex iptables n y)
+	cat <<-EOF >> config.mk
+	TC_CONFIG_ATM := $(usex atm y n)
+	TC_CONFIG_XT  := $(usex iptables y n)
+	TC_CONFIG_NO_XT := $(usex iptables n y)
 #	# We've locked in recent enough kernel headers #549948
-#	TC_CONFIG_IPSET := y
-#	HAVE_BERKELEY_DB := $(usex berkdb y n)
-#	HAVE_CAP      := $(usex caps y n)
-#	HAVE_MNL      := $(usex minimal n y)
-#	HAVE_ELF      := $(usex elf y n)
-#	HAVE_SELINUX  := $(usex selinux y n)
-#	IP_CONFIG_SETNS := ${setns}
+	TC_CONFIG_IPSET := y
+	HAVE_BERKELEY_DB := $(usex berkdb y n)
+	HAVE_CAP      := $(usex caps y n)
+	HAVE_MNL      := $(usex minimal n y)
+	HAVE_ELF      := $(usex elf y n)
+	HAVE_SELINUX  := $(usex selinux y n)
+	IP_CONFIG_SETNS := ${setns}
 #	# Use correct iptables dir, #144265 #293709
-#	IPT_LIB_DIR   := $(use iptables && ${PKG_CONFIG} xtables --variable=xtlibdir)
-#	HAVE_LIBBSD   := $(usex libbsd y n)
-#	EOF
-	./configure || die
+	IPT_LIB_DIR   := $(use iptables && ${PKG_CONFIG} xtables --variable=xtlibdir)
+	HAVE_LIBBSD   := $(usex libbsd y n)
+	EOF
 }
 
 src_compile() {
