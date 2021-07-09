@@ -24,14 +24,14 @@ K_SECURITY_UNSUPPORTED="1"
 # already included in pf-sources
 K_WANT_GENPATCHES="base extras"
 
-SHPV="5.12"
+SHPV="5.13"
 SHPPV="r1"
 
 inherit git-r3 kernel-2 optfeature
 
 DESCRIPTION="Linux kernel fork that includes the pf-kernel patchset and Gentoo's genpatches"
 HOMEPAGE="https://gitlab.com/post-factum/pf-kernel/-/wikis/README
-	https://dev.gentoo.org/~mpagano/genpatches/"
+	  https://dev.gentoo.org/~mpagano/genpatches/"
 
 EGIT_REPO_URI="https://gitlab.com/post-factum/pf-kernel"
 EGIT_BRANCH="pf-${SHPV}"
