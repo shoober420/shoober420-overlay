@@ -1,0 +1,41 @@
+From e44330d49ae00c086d4cd2786355f915d63355cb Mon Sep 17 00:00:00 2001
+From: David Turner <david@freetype.org>
+Date: Fri, 16 Jul 2021 11:12:13 +0200
+Subject: [PATCH] [smooth] Fix compilation for x86_32.x86 ABI
+
+The code assumed that if __SSE2__ is defined, then 64-bit
+integer types are available. This is not the case apparently
+for certain multilib compiler targets like x86_32.x86 used
+by Gentoo.
+
+This patch fixes the issue by disabling the special code
+path when 64-bit integer types are not available.
+
+https://gitlab.freedesktop.org/freetype/freetype/-/issues/1071
+---
+ src/smooth/ftgrays.c | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+diff --git a/src/smooth/ftgrays.c b/src/smooth/ftgrays.c
+index e5f36a054..00746c1a3 100644
+--- a/src/smooth/ftgrays.c
++++ b/src/smooth/ftgrays.c
+@@ -1018,6 +1018,16 @@ typedef ptrdiff_t  FT_PtrDist;
+ #  define BEZIER_USE_DDA  0
+ #endif
+ 
++/* For now, the code that depends on BEZIER_USE_DDA requires
++ * FT_Int64 to be defined. If FT_LONG64 is not defined, meaning
++ * there is no 64-bit type available, disable it to avoid
++ * compilation errors. See for example
++ * https://gitlab.freedesktop.org/freetype/freetype/-/issues/1071
++ */
++#if !defined(FT_LONG64)
++#  undef BEZIER_USE_DDA
++#  define BEZIER_USE_DDA  0
++#endif
+ 
+ #if BEZIER_USE_DDA
+ 
+-- 
+GitLab
