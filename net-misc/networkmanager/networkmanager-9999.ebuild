@@ -4,9 +4,9 @@
 EAPI=7
 GNOME_ORG_MODULE="NetworkManager"
 VALA_USE_DEPEND="vapigen"
-PYTHON_COMPAT=( python3_{7..9} )
+PYTHON_COMPAT=( python3_{7..10} )
 
-inherit autotools bash-completion-r1 gnome2 linux-info multilib python-any-r1 systemd readme.gentoo-r1 vala virtualx udev multilib-minimal
+inherit meson xdg bash-completion-r1 linux-info multilib python-any-r1 systemd readme.gentoo-r1 vala udev multilib-minimal
 
 DESCRIPTION="A set of co-operative tools that make networking simple and straightforward"
 HOMEPAGE="https://wiki.gnome.org/Projects/NetworkManager"
@@ -82,6 +82,7 @@ RDEPEND="${COMMON_DEPEND}
 		iwd? ( net-wireless/iwd )
 	)
 "
+
 DEPEND="${COMMON_DEPEND}
 	>=sys-kernel/linux-headers-3.18
 	"
@@ -161,65 +162,64 @@ src_prepare() {
 	DOC_CONTENTS="To modify system network connections without needing to enter the
 		root password, add your user account to the 'plugdev' group."
 
-	use vala && vala_src_prepare
-	gnome2_src_prepare
+#	use vala && vala_src_prepare
+#	gnome2_src_prepare
+	xdg_src_prepare
 
 	sed -i \
 		-e 's#/usr/bin/sed#/bin/sed#' \
 		data/84-nm-drivers.rules \
 		|| die
 
-        eautoreconf
+#        eautoreconf
 }
 
 multilib_src_configure() {
-	local myconf=(
-		--disable-more-warnings
-		--disable-static
-		--localstatedir=/var
-		--with-runstatedir=/run
-		--disable-lto
-		--disable-qt
-		--without-netconfig
-		--with-dbus-sys-dir=/etc/dbus-1/system.d
-		$(multilib_native_with nmcli)
-		--with-udev-dir="$(get_udevdir)"
-		--with-config-plugins-default=keyfile
-		--with-iptables=/sbin/iptables
-		--with-ebpf=yes
-		$(multilib_native_enable concheck)
-		--with-nm-cloud-setup=$(multilib_is_native_abi && echo yes || echo no)
-		--with-crypto=$(usex nss nss gnutls)
-		# elogind lacks multilib for now, and consolekit doesn't require linking against, so we use it as a fake option
-		# This SHOULD be removable once elogind has that. We abuse the fact that 'consolekit' does nothing at buildtime.
-		# (There is no off switch, and we do not support upower.)
-		# bug #747358
-		--with-session-tracking=$(multilib_native_usex systemd systemd $(multilib_native_usex elogind elogind consolekit))
-		--with-suspend-resume=$(multilib_native_usex systemd systemd $(multilib_native_usex elogind elogind consolekit))
-		$(multilib_native_use_with audit libaudit)
-		$(multilib_native_use_enable bluetooth bluez5-dun)
-		--without-dhcpcanon
-		$(use_with dhclient)
-		$(use_with dhcpcd)
-		--with-config-dhcp-default=internal
-		$(multilib_native_use_enable introspection)
-		$(multilib_native_use_enable ppp)
-		--without-libpsl
-		$(multilib_native_use_with modemmanager modem-manager-1)
-		$(multilib_native_use_with ncurses nmtui)
-		$(multilib_native_use_with ofono)
-		$(multilib_native_use_enable ovs)
-		$(multilib_native_use_enable policykit polkit)
-		$(multilib_native_use_with resolvconf)
-		$(multilib_native_use_with selinux)
-		$(multilib_native_use_with systemd systemd-journal)
-		$(multilib_native_use_enable teamd teamdctl)
-		$(multilib_native_use_enable test tests)
-		$(multilib_native_use_enable vala)
-		--without-valgrind
-		$(multilib_native_use_with wifi iwd)
-		$(multilib_native_use_with wext)
-		$(multilib_native_use_enable wifi)
+	local emesonargs=(
+		-Dqt=false
+		-Dnmcli=false
+		-Ddbus_conf_dir=/etc/dbus-1/system.d
+		-Dudev_dir="$(get_udevdir)"
+		-Dconfig-plugins-default=keyfile
+		-Diptables=/sbin/iptables
+		-Debpf=true
+		-Dconcheck=false
+		-Dnm_cloud_setup=false
+		-Dcrypto=$(usex nss nss gnutls)
+		-Dsession_tracking_consolekit=false
+		-Dsession_tracking=no
+		-Dsuspend_resume=upower
+		-Dlibaudit=no
+		-Dbluez5_dun=false
+		-Ddhcpcanon=false
+		-Ddhclient=false
+		-Ddhcpcd=false
+		-Dconfig_dhcp_default=internal
+		-Dintrospection=false
+		-Dppp=false
+		-Dlibpsl=false
+		-Dmodem_manager=false
+		-Dnmtui=false
+		-Dofono=false
+		-Dovs=false
+		-Dpolkit=false
+		-Dresolvconf=false
+		-Dselinux=false
+		-Dsystemdsystemunitdir=false
+		-Dsystemd_journal=false
+		-Dteamdctl=false
+		-Dtests=no
+		-Dvalgrind=false
+		-Dvalgrind_suppressions=false
+		-Dwifi=false 
+		-Diwd=false
+		-Dwext=false
+		-Dvapi=false
+		-Ddocs=false
+		-Dfirewall_zone=false
+		-Dmore_asserts=0
+		-Dmore_logging=false
+		-Dld_gc=false
 	)
 
 	# Same hack as net-dialup/pptpd to get proper plugin dir for ppp, bug #519986
@@ -232,7 +232,7 @@ multilib_src_configure() {
 
 	# unit files directory needs to be passed only when systemd is enabled,
 	# otherwise systemd support is not disabled completely, bug #524534
-	use systemd && myconf+=( --with-systemdsystemunitdir="$(systemd_get_systemunitdir)" )
+#	use systemd && myconf+=( --with-systemdsystemunitdir="$(systemd_get_systemunitdir)" )
 
 	if multilib_is_native_abi; then
 		# work-around man out-of-source brokenness, must be done before configure
@@ -240,11 +240,13 @@ multilib_src_configure() {
 		ln -s "${S}/man" man || die
 	fi
 
-	ECONF_SOURCE=${S} gnome2_src_configure "${myconf[@]}"
+	meson_src_configure
 }
 
 multilib_src_compile() {
-        emake
+	meson_src_compile
+
+#       emake
         
 #	if multilib_is_native_abi; then
 #		emake
@@ -264,61 +266,63 @@ multilib_src_compile() {
 #}
 
 multilib_src_install() {
-	if multilib_is_native_abi; then
+	meson_src_install	
+#	if multilib_is_native_abi; then
 		# Install completions at proper place, bug #465100
-		gnome2_src_install completiondir="$(get_bashcompdir)"
-		insinto /usr/lib/NetworkManager/conf.d #702476
-		doins "${S}"/examples/nm-conf.d/31-mac-addr-change.conf
-	else
-		local targets=(
-			install-libLTLIBRARIES
-			install-libnmincludeHEADERS
-			install-nodist_libnmincludeHEADERS
-			install-pkgconfigDATA
-		)
-		emake DESTDIR="${D}" "${targets[@]}"
-	fi
+#		gnome2_src_install completiondir="$(get_bashcompdir)"
+#		insinto /usr/lib/NetworkManager/conf.d #702476
+#		doins "${S}"/examples/nm-conf.d/31-mac-addr-change.conf
+#	else
+#		local targets=(
+#			install-libLTLIBRARIES
+#			install-libnmincludeHEADERS
+#			install-nodist_libnmincludeHEADERS
+#			install-pkgconfigDATA
+#		)
+#		emake DESTDIR="${D}" "${targets[@]}"
+#	fi
 }
 
-multilib_src_install_all() {
-	einstalldocs
-	! use systemd && readme.gentoo_create_doc
+#multilib_src_install_all() {
+#	einstalldocs
+#	! use systemd && readme.gentoo_create_doc
 
-	newinitd "${FILESDIR}/init.d.NetworkManager-r2" NetworkManager
-	newconfd "${FILESDIR}/conf.d.NetworkManager" NetworkManager
+#	newinitd "${FILESDIR}/init.d.NetworkManager-r2" NetworkManager
+#	newconfd "${FILESDIR}/conf.d.NetworkManager" NetworkManager
 
 	# Need to keep the /etc/NetworkManager/dispatched.d for dispatcher scripts
-	keepdir /etc/NetworkManager/dispatcher.d
+#	keepdir /etc/NetworkManager/dispatcher.d
 
 	# Provide openrc net dependency only when nm is connected
-	exeinto /etc/NetworkManager/dispatcher.d
-	newexe "${FILESDIR}/10-openrc-status-r4" 10-openrc-status
-	sed -e "s:@EPREFIX@:${EPREFIX}:g" \
-		-i "${ED}/etc/NetworkManager/dispatcher.d/10-openrc-status" || die
+#	exeinto /etc/NetworkManager/dispatcher.d
+#	newexe "${FILESDIR}/10-openrc-status-r4" 10-openrc-status
+#	sed -e "s:@EPREFIX@:${EPREFIX}:g" \
+#		-i "${ED}/etc/NetworkManager/dispatcher.d/10-openrc-status" || die
 
-	keepdir /etc/NetworkManager/system-connections
-	chmod 0600 "${ED}"/etc/NetworkManager/system-connections/.keep* # bug #383765, upstream bug #754594
+#	keepdir /etc/NetworkManager/system-connections
+#	chmod 0600 "${ED}"/etc/NetworkManager/system-connections/.keep* # bug #383765, upstream bug #754594
 
 	# Allow users in plugdev group to modify system connections
-	insinto /usr/share/polkit-1/rules.d/
-	doins "${FILESDIR}/01-org.freedesktop.NetworkManager.settings.modify.system.rules"
+#	insinto /usr/share/polkit-1/rules.d/
+#	doins "${FILESDIR}/01-org.freedesktop.NetworkManager.settings.modify.system.rules"
 
-	if use iwd; then
-		# This goes to $nmlibdir/conf.d/ and $nmlibdir is '${prefix}'/lib/$PACKAGE, thus always lib, not get_libdir
-		cat <<-EOF > "${ED}"/usr/lib/NetworkManager/conf.d/iwd.conf
-		[device]
-		wifi.backend=iwd
-		EOF
-	fi
+#	if use iwd; then
+#		# This goes to $nmlibdir/conf.d/ and $nmlibdir is '${prefix}'/lib/$PACKAGE, thus always lib, not get_libdir
+#		cat <<-EOF > "${ED}"/usr/lib/NetworkManager/conf.d/iwd.conf
+#		[device]
+#		wifi.backend=iwd
+#		EOF
+#	fi
 
 	# Empty
-	rmdir "${ED}"/var{/lib{/NetworkManager,},} || die
-}
+#	rmdir "${ED}"/var{/lib{/NetworkManager,},} || die
+#}
 
 pkg_postinst() {
-	gnome2_pkg_postinst
-	systemd_reenable NetworkManager.service
-	! use systemd && readme.gentoo_print_elog
+	xdg_pkg_postinst
+#	gnome2_pkg_postinst
+#	systemd_reenable NetworkManager.service
+#	! use systemd && readme.gentoo_print_elog
 
 	if [[ -e "${EROOT}/etc/NetworkManager/nm-system-settings.conf" ]]; then
 		ewarn "The ${PN} system configuration file has moved to a new location."
