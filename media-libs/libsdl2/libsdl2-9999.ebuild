@@ -12,6 +12,7 @@ HOMEPAGE="https://www.libsdl.org/"
 if [[ ${PV} == 9999 ]]; then
         inherit git-r3
         EGIT_REPO_URI="https://github.com/libsdl-org/SDL.git"
+#	EGIT_COMMIT="9170c0c7f8d3deebb60fff4a88e074de1c37a2f5"
 fi
 
 LICENSE="ZLIB"
@@ -86,10 +87,6 @@ MULTILIB_WRAPPED_HEADERS=(
 	/usr/include/SDL2/SDL_platform.h
 	/usr/include/SDL2/begin_code.h
 	/usr/include/SDL2/close_code.h
-)
-
-PATCHES=(
-	"${FILESDIR}"/${PN}-2.0.14-static-libs.patch
 )
 
 S="${WORKDIR}/${PN}-${PV}"
