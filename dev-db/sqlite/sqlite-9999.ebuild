@@ -22,7 +22,7 @@ fi
 
 LICENSE="public-domain"
 SLOT="3"
-KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~riscv ~s390 ~sparc ~x86 ~x64-cygwin ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~alpha amd64 arm arm64 hppa ~ia64 ~m68k ~mips ppc ppc64 ~riscv ~s390 sparc x86 ~x64-cygwin ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="debug doc icu +readline secure-delete static-libs tcl test tools"
 if [[ "${PV}" == "9999" ]]; then
 	PROPERTIES="live"
@@ -136,6 +136,8 @@ src_unpack() {
 }
 
 src_prepare() {
+#	eapply "${FILESDIR}/"${PN}-3.35.0-build_{1.1,1.2,2.1,2.2}.patch
+
 	eapply_user
 
 	eautoreconf
@@ -278,7 +280,7 @@ multilib_src_configure() {
 	append-cppflags -DSQLITE_USE_URI
 
 	# debug USE flag.
-	options+=($(use_enable debug))
+#	options+=($(use_enable debug))
 
 	# icu USE flag.
 	if use icu; then
@@ -316,12 +318,6 @@ multilib_src_configure() {
 		)
 	else
 		options+=(--disable-tcl)
-	fi
-
-	if [[ "${CHOST}" == *-mint* ]]; then
-		# sys/mman.h not available in MiNTLib.
-		# https://sqlite.org/compile.html#omit_wal
-		append-cppflags -DSQLITE_OMIT_WAL
 	fi
 
 	if [[ "${ABI}" == "x86" ]]; then
