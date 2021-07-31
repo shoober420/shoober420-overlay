@@ -15,6 +15,8 @@ SLOT="0"
 IUSE="sdl2"
 
 DEPEND="
+	dev-util/vulkan-headers
+	media-libs/vulkan-loader
 	media-libs/libvorbis
 	media-libs/libogg
 	media-libs/libmad
