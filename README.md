@@ -28,6 +28,7 @@
 * expat-9999
 * freeglut-9999
 * flac-9999
+* fluidsynth-9999
 * fontconfig-9999
 * fribidi-9999
 * gdk-pixbuf-9999
