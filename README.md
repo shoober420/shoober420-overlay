@@ -152,6 +152,7 @@
 * xtrans-9999
 * xwayland-9999
 * xwininfo-9999
+* yamagi-quake2-9999
 * yash-9999
 * zenity-9999
 * zstd-9999
