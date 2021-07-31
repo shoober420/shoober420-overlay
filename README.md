@@ -15,6 +15,7 @@
 * c2man-9999
 * cairo-9999 (1.16.0-binutils-2.34.patch removed)
 * chicago95-9999
+* chocolate-doom-9999
 * compose-tables-9999
 * coreutils-9999 (requires FEATURES="-network-sandbox")
 * cups-9999 (1.4.4-nostrip.patch removed)
