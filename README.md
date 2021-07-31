@@ -133,6 +133,7 @@
 * tiff-9999
 * util-linux-9999 (no ruby)
 * util-macros-9999
+* vkquake-9999
 * wayst-9999
 * xbitmaps-9999
 * xcb-proto-9999
