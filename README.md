@@ -131,6 +131,7 @@
 * sqlite-9999
 * tiff-3.9.7-r1
 * tiff-9999
+* tyrquake-9999
 * util-linux-9999 (no ruby)
 * util-macros-9999
 * vkquake-9999
