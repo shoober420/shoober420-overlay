@@ -6,6 +6,7 @@ EAPI=7
 if [[ "${PV}" == "9999" ]]; then
 	inherit git-r3
 	EGIT_REPO_URI="https://disenchant.net/git/tyrquake.git"
+	EGIT_COMMIT="2505bd88a4559d0b640fdc1524f776c73fc56c05"
 fi
 
 DESCRIPTION="Faithful Quake 1 source port"
@@ -27,7 +28,7 @@ RDEPEND="${DEPEND}"
 
 src_compile() {
 #	cd Quake || die
-	emake
+	emake USE_SDL=Y
 }
 
 src_install() {
