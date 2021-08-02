@@ -29,7 +29,7 @@ RDEPEND="${DEPEND}"
 
 src_compile() {
 	cd Quake || die
-	emake
+	emake USE_SDL2=1 USE_CODEC_FLAC=1 USE_CODEC_OPUS=0 USE_CODEC_MIKMOD=0 USE_CODEC_UMX=0
 }
 
 src_install() {
