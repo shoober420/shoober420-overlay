@@ -39,9 +39,8 @@ src_compile() {
 }
 
 src_install() {
-		if use vulkan; then
-			dobin "${WORKDIR}"/${PN}-${PV}/release/ref_vk.so
-		fi
+		insinto /usr/lib/yamagi-quake2
+		doins "${WORKDIR}"/${PN}-${PV}/release/ref_vk.so
 }
 
 pkg_postinst() {
