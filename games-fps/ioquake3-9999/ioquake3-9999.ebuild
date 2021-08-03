@@ -1,18 +1,16 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
 inherit eutils desktop flag-o-matic toolchain-funcs
-[[ "${PV}" == 9999* ]] && inherit git-r3
 
-MY_PN="ioquake3"
-MY_PV="${PV}"
-MY_P="${MY_PN}-${MY_PV}"
-
-DESCRIPTION="Quake III Arena - 3rd installment of the classic id 3D first-person shooter"
+DESCRIPTION="modern quake3 source port"
 HOMEPAGE="https://ioquake3.org/"
-[[ "${PV}" != 9999* ]] && SRC_URI="https://ioquake3.org/files/${MY_PV}/${MY_P}.tar.bz2"
-EGIT_REPO_URI="https://github.com/ioquake/ioq3.git"
+
+if [[ ${PV} == 9999 ]]; then
+        inherit git-r3
+        EGIT_REPO_URI="https://github.com/ioquake/ioq3.git"
+fi
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -21,7 +19,7 @@ KEYWORDS=""
 IUSE="dedicated opengl teamarena +openal curl vorbis voice mumble"
 
 UIDEPEND="virtual/opengl
-	media-libs/libsdl[sound,video,joystick,X,opengl]
+	media-libs/libsdl[sound,video,X,opengl]
 	virtual/jpeg:0
 	openal? ( media-libs/openal )
 	vorbis? (
@@ -41,9 +39,7 @@ RDEPEND="${DEPEND}
 	!dedicated? ( ${UIRDEPEND} )
 "
 
-if [[ "${PV}" != 9999* ]] ; then
-	S="${WORKDIR}/${MY_P}"
-fi
+S="${WORKDIR}/${PN}-${PV}"
 
 my_arch() {
 	case "${ARCH}" in
@@ -80,7 +76,7 @@ src_compile() {
 		BUILD_GAME_QVM=0 \
 		BUILD_GAME_SO=0 \
 		BUILD_SERVER=$(buildit dedicated) \
-		DEFAULT_BASEDIR="${EPREFIX}/usr/$(get_libdir)/${PN}" \
+		DEFAULT_BASEDIR="${EPREFIX}/usr/$(get_libdir)/quake3" \
 		FULLBINEXT="" \
 		GENERATE_DEPENDENCIES=0 \
 		OPTIMIZE="" \
