@@ -5,7 +5,7 @@ EAPI=8
 
 inherit desktop toolchain-funcs wrapper
 
-DESCRIPTION="Quake 2 engine focused on single player"
+DESCRIPTION="yamagi-quake2 vulkan renderer"
 HOMEPAGE="https://www.yamagi.org/quake2/"
 
 if [[ ${PV} == 9999 ]]; then
