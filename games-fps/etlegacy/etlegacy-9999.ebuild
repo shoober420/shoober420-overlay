@@ -22,7 +22,7 @@ fi
 
 LICENSE="GPL-3 RTCW-ETEULA"
 SLOT="0"
-IUSE="autoupdate +curl dedicated +freetype +gettext ipv6 irc lua omnibot +openal +opengl +png renderer2 renderer-gles +ssl +theora +vorbis"
+IUSE="autoupdate +curl dedicated +freetype +gettext ipv6 irc lua omnibot +openal +opengl +png +renderer2 renderer-gles +ssl +theora +vorbis"
 #REQUIRED_USE="omnibot? ( x86 )"
 
 RESTRICT="mirror"
