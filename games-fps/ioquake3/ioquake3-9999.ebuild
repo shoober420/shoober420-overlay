@@ -1,4 +1,4 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -71,7 +71,8 @@ src_compile() {
 	# TODO: BUILD_CLIENT_SMP=$(buildit smp)
 	emake \
 		ARCH="$(my_arch)" \
-		V=1 \
+		V=0 \
+		USE_INTERNAL_LIBS=0 \
 		BUILD_CLIENT=$(( $(buildit opengl) | $(buildit !dedicated) )) \
 		BUILD_GAME_QVM=0 \
 		BUILD_GAME_SO=0 \
@@ -83,6 +84,7 @@ src_compile() {
 		PLATFORM="$(my_platform)" \
 		TOOLS_CC="$(tc-getBUILD_CC)" \
 		USE_CODEC_VORBIS=$(buildit vorbis) \
+		USE_CODEC_OPUS=0 \
 		USE_CURL=$(buildit curl) \
 		USE_CURL_DLOPEN=0 \
 		USE_INTERNAL_JPEG=0 \
