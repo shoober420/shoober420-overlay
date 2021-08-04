@@ -160,6 +160,7 @@
 * xwayland-9999
 * xwininfo-9999
 * yamagi-quake2-9999
+* yamagi-quake2-ctf-9999
 * yamagi-quake2-rogue-9999
 * yamagi-quake2-xatrix-9999
 * yamagi-vkquake2-9999
