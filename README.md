@@ -25,6 +25,7 @@
 * dbus-glib-9999
 * efibootmgr-9999
 * elfutils-9999
+* etlegacy-9999
 * expat-9999
 * freeglut-9999
 * flac-9999
