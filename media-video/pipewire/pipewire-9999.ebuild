@@ -140,7 +140,7 @@ multilib_src_configure() {
 		-Ddocdir="${EPREFIX}"/usr/share/doc/${PF}
 		$(meson_native_feature doc docs)
 		$(meson_native_enabled examples) # Disabling this implicitly disables -Dmedia-session
-		$(meson_native_enabled media-session)
+#		$(meson_native_enabled media-session)
 		$(meson_native_enabled man)
 		$(meson_feature test tests)
 		-Dinstalled_tests=disabled # Matches upstream; Gentoo never installs tests
@@ -165,9 +165,10 @@ multilib_src_configure() {
 		-Dcontrol=enabled # Matches upstream
 		-Daudiotestsrc=enabled # Matches upstream
 		-Dffmpeg=disabled # Disabled by upstream and no major developments to spa/plugins/ffmpeg/ since May 2020
-		-Dpipewire-jack=enabled # Allows integrating JACK apps into PW graph
+		-Dpipewire-jack=disabled # Allows integrating JACK apps into PW graph
 		$(meson_native_feature jack-client jack) # Allows PW to act as a JACK client
-		$(meson_feature jack-sdk jack-devel)
+#		$(meson_feature jack-sdk)
+		-Djack-devel=false
 		$(usex jack-sdk "-Dlibjack-path=${EPREFIX}/usr/$(get_libdir)" '')
 		-Dsupport=enabled # Miscellaneous/common plugins, such as null sink
 		-Devl=disabled # Matches upstream
