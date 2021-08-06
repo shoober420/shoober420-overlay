@@ -19,7 +19,7 @@ KEYWORDS=""
 IUSE="dedicated opengl +openal curl vorbis voice mumble"
 
 UIDEPEND="virtual/opengl
-	media-libs/libsdl[sound,video,X,opengl]
+	media-libs/libsdl2[sound,video,X,opengl]
 	virtual/jpeg:0
 	openal? ( media-libs/openal )
 	vorbis? (
