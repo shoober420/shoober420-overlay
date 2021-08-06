@@ -74,6 +74,7 @@
 * libpng-9999
 * librsvg-9999 (requires FEATURES="-network-sandbox")
 * libsdl-9999
+* libsdl12-compat-9999
 * libsdl2-9999
 * libSM-9999
 * libtasn1-9999
