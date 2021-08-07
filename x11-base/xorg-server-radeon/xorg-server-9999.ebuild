@@ -25,6 +25,7 @@ CDEPEND="
 	>=x11-apps/rgb-1.0.3
 	>=x11-apps/xauth-1.0.3
 	x11-apps/xkbcomp
+        x11-libs/libxcvt
 	>=x11-libs/libdrm-2.4.89
 	>=x11-libs/libpciaccess-0.12.901
 	>=x11-libs/libXau-1.0.4
