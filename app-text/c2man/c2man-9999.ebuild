@@ -1,6 +1,8 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
+### you need to run "sh Configure" in the source directory to generate a new "Makefile" and "config.sh" after certain GCC updates
+
 EAPI=7
 
 inherit toolchain-funcs
