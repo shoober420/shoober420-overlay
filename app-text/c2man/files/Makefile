@@ -3,7 +3,7 @@
 # UNIX makefile for manual page generator
 # Note: any changes made here will be lost next time Configure is run!.
 
-CC=gcc -O
+CC=cc -Ofast
 YACC=yacc 
 LEX=lex 
 SED=/bin/sed
@@ -18,10 +18,10 @@ MKDEP=/var/tmp/portage/app-text/c2man-9999/work/c2man-9999/mkdep
 bin=/usr/bin
 privlib=/usr/lib/c2man
 
-mansrc= 
-manext=0
+mansrc=/usr/share/man/man1
+manext=1
 CFLAGS=
-WARNFLAGS=-Wall -Wno-comment
+WARNFLAGS= 
 LDFLAGS= -L/usr/local/lib
 LIBS=   
 
@@ -140,20 +140,21 @@ y.tab.o: symbol.h
 
 # DO NOT DELETE THIS LINE! make depend DEPENDS ON IT!
 c2man.o: c2man.c /usr/include/stdc-predef.h /usr/include/ctype.h \
- /usr/include/features.h /usr/include/sys/cdefs.h \
- /usr/include/bits/wordsize.h /usr/include/bits/long-double.h \
+ /usr/include/features.h /usr/include/features-time64.h \
+ /usr/include/bits/wordsize.h /usr/include/bits/timesize.h \
+ /usr/include/sys/cdefs.h /usr/include/bits/long-double.h \
  /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h \
- /usr/include/bits/types.h /usr/include/bits/timesize.h \
- /usr/include/bits/typesizes.h /usr/include/bits/time64.h \
- /usr/include/bits/endian.h /usr/include/bits/endianness.h \
- /usr/include/bits/types/locale_t.h /usr/include/bits/types/__locale_t.h \
- /usr/include/errno.h /usr/include/bits/errno.h \
- /usr/include/linux/errno.h /usr/include/asm/errno.h \
- /usr/include/asm-generic/errno.h /usr/include/asm-generic/errno-base.h \
- c2man.h config.h symbol.h /usr/include/sys/types.h \
- /usr/include/bits/types/clock_t.h /usr/include/bits/types/clockid_t.h \
- /usr/include/bits/types/time_t.h /usr/include/bits/types/timer_t.h \
- /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/stddef.h \
+ /usr/include/bits/types.h /usr/include/bits/typesizes.h \
+ /usr/include/bits/time64.h /usr/include/bits/endian.h \
+ /usr/include/bits/endianness.h /usr/include/bits/types/locale_t.h \
+ /usr/include/bits/types/__locale_t.h /usr/include/errno.h \
+ /usr/include/bits/errno.h /usr/include/linux/errno.h \
+ /usr/include/asm/errno.h /usr/include/asm-generic/errno.h \
+ /usr/include/asm-generic/errno-base.h c2man.h config.h symbol.h \
+ /usr/include/sys/types.h /usr/include/bits/types/clock_t.h \
+ /usr/include/bits/types/clockid_t.h /usr/include/bits/types/time_t.h \
+ /usr/include/bits/types/timer_t.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.2.0/include/stddef.h \
  /usr/include/bits/stdint-intn.h /usr/include/endian.h \
  /usr/include/bits/byteswap.h /usr/include/bits/uintn-identity.h \
  /usr/include/sys/select.h /usr/include/bits/select.h \
@@ -168,7 +169,7 @@ c2man.o: c2man.c /usr/include/stdc-predef.h /usr/include/ctype.h \
  /usr/include/bits/floatn-common.h /usr/include/alloca.h \
  /usr/include/bits/stdlib-float.h /usr/include/string.h \
  /usr/include/strings.h /usr/include/stdio.h \
- /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/stdarg.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.2.0/include/stdarg.h \
  /usr/include/bits/types/__fpos_t.h /usr/include/bits/types/__mbstate_t.h \
  /usr/include/bits/types/__fpos64_t.h /usr/include/bits/types/__FILE.h \
  /usr/include/bits/types/FILE.h /usr/include/bits/types/struct_FILE.h \
@@ -192,18 +193,19 @@ c2man.o: c2man.c /usr/include/stdc-predef.h /usr/include/ctype.h \
  /usr/include/bits/sigevent-consts.h /usr/include/bits/sigaction.h \
  /usr/include/bits/sigcontext.h /usr/include/bits/types/stack_t.h \
  /usr/include/sys/ucontext.h /usr/include/bits/sigstack.h \
- /usr/include/bits/ss_flags.h /usr/include/bits/types/struct_sigstack.h \
- /usr/include/bits/sigthread.h /usr/include/bits/signal_ext.h
+ /usr/include/bits/sigstksz.h /usr/include/bits/ss_flags.h \
+ /usr/include/bits/types/struct_sigstack.h /usr/include/bits/sigthread.h \
+ /usr/include/bits/signal_ext.h
 semantic.o: semantic.c /usr/include/stdc-predef.h c2man.h config.h \
  symbol.h /usr/include/sys/types.h /usr/include/features.h \
- /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h \
+ /usr/include/features-time64.h /usr/include/bits/wordsize.h \
+ /usr/include/bits/timesize.h /usr/include/sys/cdefs.h \
  /usr/include/bits/long-double.h /usr/include/gnu/stubs.h \
  /usr/include/gnu/stubs-64.h /usr/include/bits/types.h \
- /usr/include/bits/timesize.h /usr/include/bits/typesizes.h \
- /usr/include/bits/time64.h /usr/include/bits/types/clock_t.h \
- /usr/include/bits/types/clockid_t.h /usr/include/bits/types/time_t.h \
- /usr/include/bits/types/timer_t.h \
- /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/stddef.h \
+ /usr/include/bits/typesizes.h /usr/include/bits/time64.h \
+ /usr/include/bits/types/clock_t.h /usr/include/bits/types/clockid_t.h \
+ /usr/include/bits/types/time_t.h /usr/include/bits/types/timer_t.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.2.0/include/stddef.h \
  /usr/include/bits/stdint-intn.h /usr/include/endian.h \
  /usr/include/bits/endian.h /usr/include/bits/endianness.h \
  /usr/include/bits/byteswap.h /usr/include/bits/uintn-identity.h \
@@ -220,7 +222,7 @@ semantic.o: semantic.c /usr/include/stdc-predef.h c2man.h config.h \
  /usr/include/bits/stdlib-float.h /usr/include/string.h \
  /usr/include/bits/types/locale_t.h /usr/include/bits/types/__locale_t.h \
  /usr/include/strings.h /usr/include/stdio.h \
- /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/stdarg.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.2.0/include/stdarg.h \
  /usr/include/bits/types/__fpos_t.h /usr/include/bits/types/__mbstate_t.h \
  /usr/include/bits/types/__fpos64_t.h /usr/include/bits/types/__FILE.h \
  /usr/include/bits/types/FILE.h /usr/include/bits/types/struct_FILE.h \
@@ -238,14 +240,14 @@ semantic.o: semantic.c /usr/include/stdc-predef.h c2man.h config.h \
  strconcat.h output.h
 string.o: string.c /usr/include/stdc-predef.h c2man.h config.h symbol.h \
  /usr/include/sys/types.h /usr/include/features.h \
- /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h \
+ /usr/include/features-time64.h /usr/include/bits/wordsize.h \
+ /usr/include/bits/timesize.h /usr/include/sys/cdefs.h \
  /usr/include/bits/long-double.h /usr/include/gnu/stubs.h \
  /usr/include/gnu/stubs-64.h /usr/include/bits/types.h \
- /usr/include/bits/timesize.h /usr/include/bits/typesizes.h \
- /usr/include/bits/time64.h /usr/include/bits/types/clock_t.h \
- /usr/include/bits/types/clockid_t.h /usr/include/bits/types/time_t.h \
- /usr/include/bits/types/timer_t.h \
- /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/stddef.h \
+ /usr/include/bits/typesizes.h /usr/include/bits/time64.h \
+ /usr/include/bits/types/clock_t.h /usr/include/bits/types/clockid_t.h \
+ /usr/include/bits/types/time_t.h /usr/include/bits/types/timer_t.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.2.0/include/stddef.h \
  /usr/include/bits/stdint-intn.h /usr/include/endian.h \
  /usr/include/bits/endian.h /usr/include/bits/endianness.h \
  /usr/include/bits/byteswap.h /usr/include/bits/uintn-identity.h \
@@ -262,7 +264,7 @@ string.o: string.c /usr/include/stdc-predef.h c2man.h config.h symbol.h \
  /usr/include/bits/stdlib-float.h /usr/include/string.h \
  /usr/include/bits/types/locale_t.h /usr/include/bits/types/__locale_t.h \
  /usr/include/strings.h /usr/include/stdio.h \
- /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/stdarg.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.2.0/include/stdarg.h \
  /usr/include/bits/types/__fpos_t.h /usr/include/bits/types/__mbstate_t.h \
  /usr/include/bits/types/__fpos64_t.h /usr/include/bits/types/__FILE.h \
  /usr/include/bits/types/FILE.h /usr/include/bits/types/struct_FILE.h \
@@ -276,14 +278,14 @@ string.o: string.c /usr/include/stdc-predef.h c2man.h config.h symbol.h \
  confmagic.h /usr/include/ctype.h
 symbol.o: symbol.c /usr/include/stdc-predef.h c2man.h config.h symbol.h \
  /usr/include/sys/types.h /usr/include/features.h \
- /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h \
+ /usr/include/features-time64.h /usr/include/bits/wordsize.h \
+ /usr/include/bits/timesize.h /usr/include/sys/cdefs.h \
  /usr/include/bits/long-double.h /usr/include/gnu/stubs.h \
  /usr/include/gnu/stubs-64.h /usr/include/bits/types.h \
- /usr/include/bits/timesize.h /usr/include/bits/typesizes.h \
- /usr/include/bits/time64.h /usr/include/bits/types/clock_t.h \
- /usr/include/bits/types/clockid_t.h /usr/include/bits/types/time_t.h \
- /usr/include/bits/types/timer_t.h \
- /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/stddef.h \
+ /usr/include/bits/typesizes.h /usr/include/bits/time64.h \
+ /usr/include/bits/types/clock_t.h /usr/include/bits/types/clockid_t.h \
+ /usr/include/bits/types/time_t.h /usr/include/bits/types/timer_t.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.2.0/include/stddef.h \
  /usr/include/bits/stdint-intn.h /usr/include/endian.h \
  /usr/include/bits/endian.h /usr/include/bits/endianness.h \
  /usr/include/bits/byteswap.h /usr/include/bits/uintn-identity.h \
@@ -300,7 +302,7 @@ symbol.o: symbol.c /usr/include/stdc-predef.h c2man.h config.h symbol.h \
  /usr/include/bits/stdlib-float.h /usr/include/string.h \
  /usr/include/bits/types/locale_t.h /usr/include/bits/types/__locale_t.h \
  /usr/include/strings.h /usr/include/stdio.h \
- /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/stdarg.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.2.0/include/stdarg.h \
  /usr/include/bits/types/__fpos_t.h /usr/include/bits/types/__mbstate_t.h \
  /usr/include/bits/types/__fpos64_t.h /usr/include/bits/types/__FILE.h \
  /usr/include/bits/types/FILE.h /usr/include/bits/types/struct_FILE.h \
@@ -314,14 +316,14 @@ symbol.o: symbol.c /usr/include/stdc-predef.h c2man.h config.h symbol.h \
  confmagic.h
 strconcat.o: strconcat.c /usr/include/stdc-predef.h c2man.h config.h \
  symbol.h /usr/include/sys/types.h /usr/include/features.h \
- /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h \
+ /usr/include/features-time64.h /usr/include/bits/wordsize.h \
+ /usr/include/bits/timesize.h /usr/include/sys/cdefs.h \
  /usr/include/bits/long-double.h /usr/include/gnu/stubs.h \
  /usr/include/gnu/stubs-64.h /usr/include/bits/types.h \
- /usr/include/bits/timesize.h /usr/include/bits/typesizes.h \
- /usr/include/bits/time64.h /usr/include/bits/types/clock_t.h \
- /usr/include/bits/types/clockid_t.h /usr/include/bits/types/time_t.h \
- /usr/include/bits/types/timer_t.h \
- /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/stddef.h \
+ /usr/include/bits/typesizes.h /usr/include/bits/time64.h \
+ /usr/include/bits/types/clock_t.h /usr/include/bits/types/clockid_t.h \
+ /usr/include/bits/types/time_t.h /usr/include/bits/types/timer_t.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.2.0/include/stddef.h \
  /usr/include/bits/stdint-intn.h /usr/include/endian.h \
  /usr/include/bits/endian.h /usr/include/bits/endianness.h \
  /usr/include/bits/byteswap.h /usr/include/bits/uintn-identity.h \
@@ -338,7 +340,7 @@ strconcat.o: strconcat.c /usr/include/stdc-predef.h c2man.h config.h \
  /usr/include/bits/stdlib-float.h /usr/include/string.h \
  /usr/include/bits/types/locale_t.h /usr/include/bits/types/__locale_t.h \
  /usr/include/strings.h /usr/include/stdio.h \
- /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/stdarg.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.2.0/include/stdarg.h \
  /usr/include/bits/types/__fpos_t.h /usr/include/bits/types/__mbstate_t.h \
  /usr/include/bits/types/__fpos64_t.h /usr/include/bits/types/__FILE.h \
  /usr/include/bits/types/FILE.h /usr/include/bits/types/struct_FILE.h \
@@ -352,14 +354,14 @@ strconcat.o: strconcat.c /usr/include/stdc-predef.h c2man.h config.h \
  confmagic.h strconcat.h
 strappend.o: strappend.c /usr/include/stdc-predef.h c2man.h config.h \
  symbol.h /usr/include/sys/types.h /usr/include/features.h \
- /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h \
+ /usr/include/features-time64.h /usr/include/bits/wordsize.h \
+ /usr/include/bits/timesize.h /usr/include/sys/cdefs.h \
  /usr/include/bits/long-double.h /usr/include/gnu/stubs.h \
  /usr/include/gnu/stubs-64.h /usr/include/bits/types.h \
- /usr/include/bits/timesize.h /usr/include/bits/typesizes.h \
- /usr/include/bits/time64.h /usr/include/bits/types/clock_t.h \
- /usr/include/bits/types/clockid_t.h /usr/include/bits/types/time_t.h \
- /usr/include/bits/types/timer_t.h \
- /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/stddef.h \
+ /usr/include/bits/typesizes.h /usr/include/bits/time64.h \
+ /usr/include/bits/types/clock_t.h /usr/include/bits/types/clockid_t.h \
+ /usr/include/bits/types/time_t.h /usr/include/bits/types/timer_t.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.2.0/include/stddef.h \
  /usr/include/bits/stdint-intn.h /usr/include/endian.h \
  /usr/include/bits/endian.h /usr/include/bits/endianness.h \
  /usr/include/bits/byteswap.h /usr/include/bits/uintn-identity.h \
@@ -376,7 +378,7 @@ strappend.o: strappend.c /usr/include/stdc-predef.h c2man.h config.h \
  /usr/include/bits/stdlib-float.h /usr/include/string.h \
  /usr/include/bits/types/locale_t.h /usr/include/bits/types/__locale_t.h \
  /usr/include/strings.h /usr/include/stdio.h \
- /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/stdarg.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.2.0/include/stdarg.h \
  /usr/include/bits/types/__fpos_t.h /usr/include/bits/types/__mbstate_t.h \
  /usr/include/bits/types/__fpos64_t.h /usr/include/bits/types/__FILE.h \
  /usr/include/bits/types/FILE.h /usr/include/bits/types/struct_FILE.h \
@@ -390,14 +392,14 @@ strappend.o: strappend.c /usr/include/stdc-predef.h c2man.h config.h \
  confmagic.h strappend.h
 manpage.o: manpage.c /usr/include/stdc-predef.h c2man.h config.h symbol.h \
  /usr/include/sys/types.h /usr/include/features.h \
- /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h \
+ /usr/include/features-time64.h /usr/include/bits/wordsize.h \
+ /usr/include/bits/timesize.h /usr/include/sys/cdefs.h \
  /usr/include/bits/long-double.h /usr/include/gnu/stubs.h \
  /usr/include/gnu/stubs-64.h /usr/include/bits/types.h \
- /usr/include/bits/timesize.h /usr/include/bits/typesizes.h \
- /usr/include/bits/time64.h /usr/include/bits/types/clock_t.h \
- /usr/include/bits/types/clockid_t.h /usr/include/bits/types/time_t.h \
- /usr/include/bits/types/timer_t.h \
- /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/stddef.h \
+ /usr/include/bits/typesizes.h /usr/include/bits/time64.h \
+ /usr/include/bits/types/clock_t.h /usr/include/bits/types/clockid_t.h \
+ /usr/include/bits/types/time_t.h /usr/include/bits/types/timer_t.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.2.0/include/stddef.h \
  /usr/include/bits/stdint-intn.h /usr/include/endian.h \
  /usr/include/bits/endian.h /usr/include/bits/endianness.h \
  /usr/include/bits/byteswap.h /usr/include/bits/uintn-identity.h \
@@ -414,7 +416,7 @@ manpage.o: manpage.c /usr/include/stdc-predef.h c2man.h config.h symbol.h \
  /usr/include/bits/stdlib-float.h /usr/include/string.h \
  /usr/include/bits/types/locale_t.h /usr/include/bits/types/__locale_t.h \
  /usr/include/strings.h /usr/include/stdio.h \
- /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/stdarg.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.2.0/include/stdarg.h \
  /usr/include/bits/types/__fpos_t.h /usr/include/bits/types/__mbstate_t.h \
  /usr/include/bits/types/__fpos64_t.h /usr/include/bits/types/__FILE.h \
  /usr/include/bits/types/FILE.h /usr/include/bits/types/struct_FILE.h \
@@ -434,14 +436,14 @@ manpage.o: manpage.c /usr/include/stdc-predef.h c2man.h config.h symbol.h \
  /usr/include/bits/stat.h /usr/include/bits/struct_stat.h
 enum.o: enum.c /usr/include/stdc-predef.h c2man.h config.h symbol.h \
  /usr/include/sys/types.h /usr/include/features.h \
- /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h \
+ /usr/include/features-time64.h /usr/include/bits/wordsize.h \
+ /usr/include/bits/timesize.h /usr/include/sys/cdefs.h \
  /usr/include/bits/long-double.h /usr/include/gnu/stubs.h \
  /usr/include/gnu/stubs-64.h /usr/include/bits/types.h \
- /usr/include/bits/timesize.h /usr/include/bits/typesizes.h \
- /usr/include/bits/time64.h /usr/include/bits/types/clock_t.h \
- /usr/include/bits/types/clockid_t.h /usr/include/bits/types/time_t.h \
- /usr/include/bits/types/timer_t.h \
- /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/stddef.h \
+ /usr/include/bits/typesizes.h /usr/include/bits/time64.h \
+ /usr/include/bits/types/clock_t.h /usr/include/bits/types/clockid_t.h \
+ /usr/include/bits/types/time_t.h /usr/include/bits/types/timer_t.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.2.0/include/stddef.h \
  /usr/include/bits/stdint-intn.h /usr/include/endian.h \
  /usr/include/bits/endian.h /usr/include/bits/endianness.h \
  /usr/include/bits/byteswap.h /usr/include/bits/uintn-identity.h \
@@ -458,7 +460,7 @@ enum.o: enum.c /usr/include/stdc-predef.h c2man.h config.h symbol.h \
  /usr/include/bits/stdlib-float.h /usr/include/string.h \
  /usr/include/bits/types/locale_t.h /usr/include/bits/types/__locale_t.h \
  /usr/include/strings.h /usr/include/stdio.h \
- /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/stdarg.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.2.0/include/stdarg.h \
  /usr/include/bits/types/__fpos_t.h /usr/include/bits/types/__mbstate_t.h \
  /usr/include/bits/types/__fpos64_t.h /usr/include/bits/types/__FILE.h \
  /usr/include/bits/types/FILE.h /usr/include/bits/types/struct_FILE.h \
@@ -472,14 +474,14 @@ enum.o: enum.c /usr/include/stdc-predef.h c2man.h config.h symbol.h \
  confmagic.h strconcat.h enum.h manpage.h
 nroff.o: nroff.c /usr/include/stdc-predef.h c2man.h config.h symbol.h \
  /usr/include/sys/types.h /usr/include/features.h \
- /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h \
+ /usr/include/features-time64.h /usr/include/bits/wordsize.h \
+ /usr/include/bits/timesize.h /usr/include/sys/cdefs.h \
  /usr/include/bits/long-double.h /usr/include/gnu/stubs.h \
  /usr/include/gnu/stubs-64.h /usr/include/bits/types.h \
- /usr/include/bits/timesize.h /usr/include/bits/typesizes.h \
- /usr/include/bits/time64.h /usr/include/bits/types/clock_t.h \
- /usr/include/bits/types/clockid_t.h /usr/include/bits/types/time_t.h \
- /usr/include/bits/types/timer_t.h \
- /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/stddef.h \
+ /usr/include/bits/typesizes.h /usr/include/bits/time64.h \
+ /usr/include/bits/types/clock_t.h /usr/include/bits/types/clockid_t.h \
+ /usr/include/bits/types/time_t.h /usr/include/bits/types/timer_t.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.2.0/include/stddef.h \
  /usr/include/bits/stdint-intn.h /usr/include/endian.h \
  /usr/include/bits/endian.h /usr/include/bits/endianness.h \
  /usr/include/bits/byteswap.h /usr/include/bits/uintn-identity.h \
@@ -496,7 +498,7 @@ nroff.o: nroff.c /usr/include/stdc-predef.h c2man.h config.h symbol.h \
  /usr/include/bits/stdlib-float.h /usr/include/string.h \
  /usr/include/bits/types/locale_t.h /usr/include/bits/types/__locale_t.h \
  /usr/include/strings.h /usr/include/stdio.h \
- /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/stdarg.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.2.0/include/stdarg.h \
  /usr/include/bits/types/__fpos_t.h /usr/include/bits/types/__mbstate_t.h \
  /usr/include/bits/types/__fpos64_t.h /usr/include/bits/types/__FILE.h \
  /usr/include/bits/types/FILE.h /usr/include/bits/types/struct_FILE.h \
@@ -510,14 +512,14 @@ nroff.o: nroff.c /usr/include/stdc-predef.h c2man.h config.h symbol.h \
  confmagic.h manpage.h output.h semantic.h /usr/include/ctype.h
 texinfo.o: texinfo.c /usr/include/stdc-predef.h c2man.h config.h symbol.h \
  /usr/include/sys/types.h /usr/include/features.h \
- /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h \
+ /usr/include/features-time64.h /usr/include/bits/wordsize.h \
+ /usr/include/bits/timesize.h /usr/include/sys/cdefs.h \
  /usr/include/bits/long-double.h /usr/include/gnu/stubs.h \
  /usr/include/gnu/stubs-64.h /usr/include/bits/types.h \
- /usr/include/bits/timesize.h /usr/include/bits/typesizes.h \
- /usr/include/bits/time64.h /usr/include/bits/types/clock_t.h \
- /usr/include/bits/types/clockid_t.h /usr/include/bits/types/time_t.h \
- /usr/include/bits/types/timer_t.h \
- /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/stddef.h \
+ /usr/include/bits/typesizes.h /usr/include/bits/time64.h \
+ /usr/include/bits/types/clock_t.h /usr/include/bits/types/clockid_t.h \
+ /usr/include/bits/types/time_t.h /usr/include/bits/types/timer_t.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.2.0/include/stddef.h \
  /usr/include/bits/stdint-intn.h /usr/include/endian.h \
  /usr/include/bits/endian.h /usr/include/bits/endianness.h \
  /usr/include/bits/byteswap.h /usr/include/bits/uintn-identity.h \
@@ -534,7 +536,7 @@ texinfo.o: texinfo.c /usr/include/stdc-predef.h c2man.h config.h symbol.h \
  /usr/include/bits/stdlib-float.h /usr/include/string.h \
  /usr/include/bits/types/locale_t.h /usr/include/bits/types/__locale_t.h \
  /usr/include/strings.h /usr/include/stdio.h \
- /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/stdarg.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.2.0/include/stdarg.h \
  /usr/include/bits/types/__fpos_t.h /usr/include/bits/types/__mbstate_t.h \
  /usr/include/bits/types/__fpos64_t.h /usr/include/bits/types/__FILE.h \
  /usr/include/bits/types/FILE.h /usr/include/bits/types/struct_FILE.h \
@@ -548,14 +550,14 @@ texinfo.o: texinfo.c /usr/include/stdc-predef.h c2man.h config.h symbol.h \
  confmagic.h manpage.h output.h /usr/include/ctype.h
 latex.o: latex.c /usr/include/stdc-predef.h c2man.h config.h symbol.h \
  /usr/include/sys/types.h /usr/include/features.h \
- /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h \
+ /usr/include/features-time64.h /usr/include/bits/wordsize.h \
+ /usr/include/bits/timesize.h /usr/include/sys/cdefs.h \
  /usr/include/bits/long-double.h /usr/include/gnu/stubs.h \
  /usr/include/gnu/stubs-64.h /usr/include/bits/types.h \
- /usr/include/bits/timesize.h /usr/include/bits/typesizes.h \
- /usr/include/bits/time64.h /usr/include/bits/types/clock_t.h \
- /usr/include/bits/types/clockid_t.h /usr/include/bits/types/time_t.h \
- /usr/include/bits/types/timer_t.h \
- /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/stddef.h \
+ /usr/include/bits/typesizes.h /usr/include/bits/time64.h \
+ /usr/include/bits/types/clock_t.h /usr/include/bits/types/clockid_t.h \
+ /usr/include/bits/types/time_t.h /usr/include/bits/types/timer_t.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.2.0/include/stddef.h \
  /usr/include/bits/stdint-intn.h /usr/include/endian.h \
  /usr/include/bits/endian.h /usr/include/bits/endianness.h \
  /usr/include/bits/byteswap.h /usr/include/bits/uintn-identity.h \
@@ -572,7 +574,7 @@ latex.o: latex.c /usr/include/stdc-predef.h c2man.h config.h symbol.h \
  /usr/include/bits/stdlib-float.h /usr/include/string.h \
  /usr/include/bits/types/locale_t.h /usr/include/bits/types/__locale_t.h \
  /usr/include/strings.h /usr/include/stdio.h \
- /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/stdarg.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.2.0/include/stdarg.h \
  /usr/include/bits/types/__fpos_t.h /usr/include/bits/types/__mbstate_t.h \
  /usr/include/bits/types/__fpos64_t.h /usr/include/bits/types/__FILE.h \
  /usr/include/bits/types/FILE.h /usr/include/bits/types/struct_FILE.h \
@@ -586,14 +588,14 @@ latex.o: latex.c /usr/include/stdc-predef.h c2man.h config.h symbol.h \
  confmagic.h manpage.h output.h /usr/include/ctype.h
 html.o: html.c /usr/include/stdc-predef.h c2man.h config.h symbol.h \
  /usr/include/sys/types.h /usr/include/features.h \
- /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h \
+ /usr/include/features-time64.h /usr/include/bits/wordsize.h \
+ /usr/include/bits/timesize.h /usr/include/sys/cdefs.h \
  /usr/include/bits/long-double.h /usr/include/gnu/stubs.h \
  /usr/include/gnu/stubs-64.h /usr/include/bits/types.h \
- /usr/include/bits/timesize.h /usr/include/bits/typesizes.h \
- /usr/include/bits/time64.h /usr/include/bits/types/clock_t.h \
- /usr/include/bits/types/clockid_t.h /usr/include/bits/types/time_t.h \
- /usr/include/bits/types/timer_t.h \
- /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/stddef.h \
+ /usr/include/bits/typesizes.h /usr/include/bits/time64.h \
+ /usr/include/bits/types/clock_t.h /usr/include/bits/types/clockid_t.h \
+ /usr/include/bits/types/time_t.h /usr/include/bits/types/timer_t.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.2.0/include/stddef.h \
  /usr/include/bits/stdint-intn.h /usr/include/endian.h \
  /usr/include/bits/endian.h /usr/include/bits/endianness.h \
  /usr/include/bits/byteswap.h /usr/include/bits/uintn-identity.h \
@@ -610,7 +612,7 @@ html.o: html.c /usr/include/stdc-predef.h c2man.h config.h symbol.h \
  /usr/include/bits/stdlib-float.h /usr/include/string.h \
  /usr/include/bits/types/locale_t.h /usr/include/bits/types/__locale_t.h \
  /usr/include/strings.h /usr/include/stdio.h \
- /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/stdarg.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.2.0/include/stdarg.h \
  /usr/include/bits/types/__fpos_t.h /usr/include/bits/types/__mbstate_t.h \
  /usr/include/bits/types/__fpos64_t.h /usr/include/bits/types/__FILE.h \
  /usr/include/bits/types/FILE.h /usr/include/bits/types/struct_FILE.h \
@@ -624,14 +626,14 @@ html.o: html.c /usr/include/stdc-predef.h c2man.h config.h symbol.h \
  confmagic.h manpage.h output.h /usr/include/ctype.h
 autodoc.o: autodoc.c /usr/include/stdc-predef.h c2man.h config.h symbol.h \
  /usr/include/sys/types.h /usr/include/features.h \
- /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h \
+ /usr/include/features-time64.h /usr/include/bits/wordsize.h \
+ /usr/include/bits/timesize.h /usr/include/sys/cdefs.h \
  /usr/include/bits/long-double.h /usr/include/gnu/stubs.h \
  /usr/include/gnu/stubs-64.h /usr/include/bits/types.h \
- /usr/include/bits/timesize.h /usr/include/bits/typesizes.h \
- /usr/include/bits/time64.h /usr/include/bits/types/clock_t.h \
- /usr/include/bits/types/clockid_t.h /usr/include/bits/types/time_t.h \
- /usr/include/bits/types/timer_t.h \
- /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/stddef.h \
+ /usr/include/bits/typesizes.h /usr/include/bits/time64.h \
+ /usr/include/bits/types/clock_t.h /usr/include/bits/types/clockid_t.h \
+ /usr/include/bits/types/time_t.h /usr/include/bits/types/timer_t.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.2.0/include/stddef.h \
  /usr/include/bits/stdint-intn.h /usr/include/endian.h \
  /usr/include/bits/endian.h /usr/include/bits/endianness.h \
  /usr/include/bits/byteswap.h /usr/include/bits/uintn-identity.h \
@@ -648,7 +650,7 @@ autodoc.o: autodoc.c /usr/include/stdc-predef.h c2man.h config.h symbol.h \
  /usr/include/bits/stdlib-float.h /usr/include/string.h \
  /usr/include/bits/types/locale_t.h /usr/include/bits/types/__locale_t.h \
  /usr/include/strings.h /usr/include/stdio.h \
- /usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include/stdarg.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/11.2.0/include/stdarg.h \
  /usr/include/bits/types/__fpos_t.h /usr/include/bits/types/__mbstate_t.h \
  /usr/include/bits/types/__fpos64_t.h /usr/include/bits/types/__FILE.h \
  /usr/include/bits/types/FILE.h /usr/include/bits/types/struct_FILE.h \
