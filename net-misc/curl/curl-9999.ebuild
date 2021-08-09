@@ -60,10 +60,6 @@ RDEPEND="ldap? ( net-nds/openldap[${MULTILIB_USEDEP}] )
 		)
 	)
 	http2? ( net-libs/nghttp2[${MULTILIB_USEDEP}] )
-	nghttp3? (
-		net-libs/nghttp3[${MULTILIB_USEDEP}]
-		net-libs/ngtcp2[ssl,${MULTILIB_USEDEP}]
-	)
 	quiche? ( >=net-libs/quiche-0.3.0[${MULTILIB_USEDEP}] )
 	idn? ( net-dns/libidn2:0=[static-libs?,${MULTILIB_USEDEP}] )
 	adns? ( net-dns/c-ares:0[${MULTILIB_USEDEP}] )
@@ -236,7 +232,6 @@ multilib_src_configure() {
 		--without-libgsasl
 		--without-libpsl
 		$(use_with nghttp3)
-		$(use_with nghttp3 ngtcp2)
 		$(use_with quiche)
 		$(use_with rtmp librtmp)
 		--without-rustls
@@ -246,6 +241,7 @@ multilib_src_configure() {
 		--without-winidn
 		--without-wolfssl
 		--with-zlib
+		--without-ngtcp2
 		$(use_with zstd)
 	)
 
