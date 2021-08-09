@@ -269,8 +269,8 @@ multilib_src_configure() {
 		priv+=( "quiche" )
 	fi
 	if use nghttp3; then
-		libs+=( "-lnghttp3" "-lngtcp2" )
-		priv+=( "libnghttp3" "-libtcp2" )
+		libs+=( "-lnghttp3" )
+		priv+=( "libnghttp3" )
 	fi
 	if use ssl && use curl_ssl_openssl; then
 		libs+=( "-lssl" "-lcrypto" )
