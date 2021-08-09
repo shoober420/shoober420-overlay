@@ -59,7 +59,7 @@ RDEPEND="ldap? ( net-nds/openldap[${MULTILIB_USEDEP}] )
 			app-misc/ca-certificates
 		)
 	)
-	http2? ( net-libs/nghttp2[${MULTILIB_USEDEP}] )
+	nghttp3? ( net-libs/nghttp3 )
 	quiche? ( >=net-libs/quiche-0.3.0[${MULTILIB_USEDEP}] )
 	idn? ( net-dns/libidn2:0=[static-libs?,${MULTILIB_USEDEP}] )
 	adns? ( net-dns/c-ares:0[${MULTILIB_USEDEP}] )
