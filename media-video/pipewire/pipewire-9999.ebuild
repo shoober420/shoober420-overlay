@@ -69,14 +69,7 @@ RDEPEND="
 		!media-sound/jack-audio-connection-kit
 		!media-sound/jack2
 	)
-	pipewire-alsa? (
-		>=media-libs/alsa-lib-1.1.7[${MULTILIB_USEDEP}]
-		|| (
-			media-plugins/alsa-plugins[-pulseaudio]
-			!media-plugins/alsa-plugins
-		)
-	)
-	!pipewire-alsa? ( media-plugins/alsa-plugins[${MULTILIB_USEDEP},pulseaudio] )
+	pipewire-alsa? ( >=media-libs/alsa-lib-1.1.7[${MULTILIB_USEDEP}] )
 	systemd? ( sys-apps/systemd )
 	v4l? ( media-libs/libv4l )
 "
@@ -152,10 +145,11 @@ multilib_src_configure() {
 		-Dsystemd-system-service=disabled # Matches upstream
 		$(meson_native_feature systemd systemd-user-service)
 		$(meson_feature pipewire-alsa) # Allows integrating ALSA apps into PW graph
-		-Dspa-plugins=enabled
+		-Dspa-plugins=disabled
+		-Dlibpulse=disabled
 		-Dalsa=enabled # Allows using kernel ALSA for sound I/O (-Dmedia-session depends on this)
-		-Daudiomixer=enabled # Matches upstream
-		-Daudioconvert=enabled # Matches upstream
+		-Daudiomixer=disabled # Matches upstream
+		-Daudioconvert=disabled # Matches upstream
 		$(meson_native_feature bluetooth bluez5)
 		$(meson_native_feature bluetooth bluez5-backend-hsp-native)
 		$(meson_native_feature bluetooth bluez5-backend-hfp-native)
@@ -164,21 +158,23 @@ multilib_src_configure() {
 		$(meson_native_feature aac bluez5-codec-aac)
 		$(meson_native_feature aptx bluez5-codec-aptx)
 		$(meson_native_feature ldac bluez5-codec-ldac)
+		-Droc=disabled
+		-Davahi=disabled
 		-Dcontrol=enabled # Matches upstream
-		-Daudiotestsrc=enabled # Matches upstream
+		-Daudiotestsrc=disabled # Matches upstream
 		-Dffmpeg=disabled # Disabled by upstream and no major developments to spa/plugins/ffmpeg/ since May 2020
 		-Dpipewire-jack=disabled # Allows integrating JACK apps into PW graph
 		$(meson_native_feature jack-client jack) # Allows PW to act as a JACK client
 		-Djack-devel=false
 		$(usex jack-sdk "-Dlibjack-path=${EPREFIX}/usr/$(get_libdir)" '')
-		-Dsupport=enabled # Miscellaneous/common plugins, such as null sink
+		-Dsupport=disabled # Miscellaneous/common plugins, such as null sink
 		-Devl=disabled # Matches upstream
 		-Dtest=disabled # fakesink and fakesource plugins
 		$(meson_native_feature v4l v4l2)
 		-Dlibcamera=disabled # libcamera is not in Portage tree
-		-Dvideoconvert=enabled # Matches upstream
-		-Dvideotestsrc=enabled # Matches upstream
-		-Dvolume=enabled # Matches upstream
+		-Dvideoconvert=disabled # Matches upstream
+		-Dvideotestsrc=disabled # Matches upstream
+		-Dvolume=disabled # Matches upstream
 		-Dvulkan=disabled # Uses pre-compiled Vulkan compute shader to provide a CGI video source (dev thing; disabled by upstream)
 		$(meson_native_feature extra pw-cat)
 		-Dudev=enabled
