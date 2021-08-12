@@ -241,7 +241,7 @@ multilib_src_configure() {
 		--without-winidn
 		--without-wolfssl
 		--with-zlib
-		--without-ngtcp2
+		--with-ngtcp2
 		$(use_with zstd)
 	)
 
