@@ -127,7 +127,7 @@
 * pam-9999
 * pango-9999
 * pciutils-9999
-* pf-sources-5.12_p9999 (builds against latest stable kernel)
+* pf-sources-5.13_p9999 (builds against latest stable kernel)
 * pipewire-9999 (revert-openaptx-restriction.patch removed)
 * procps-9999
 * pulseaudio-9999
