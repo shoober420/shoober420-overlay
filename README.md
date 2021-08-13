@@ -140,6 +140,7 @@
 * shared-mime-info-9999
 * speexdsp-9999
 * sqlite-9999
+* texinfo-9999
 * tiff-3.9.7-r1
 * tiff-9999
 * tyrquake-9999
