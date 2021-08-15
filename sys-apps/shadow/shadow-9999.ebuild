@@ -44,13 +44,25 @@ DEPEND="${COMMON_DEPEND}
 	>=sys-kernel/linux-headers-4.14
 "
 RDEPEND="${COMMON_DEPEND}
+	!<sys-apps/man-pages-5.11-r1
+	!=sys-apps/man-pages-5.12-r0
+	!=sys-apps/man-pages-5.12-r1
+	nls? (
+		!<app-i18n/man-pages-it-5.06-r1
+		!<app-i18n/man-pages-ja-20180315-r1
+		!<app-i18n/man-pages-ru-5.03.2390.2390.20191017-r1
+	)
 	pam? ( >=sys-auth/pambase-20150213 )
 	su? ( !sys-apps/util-linux[su(-)] )
 "
 
-PATCHES=(
-	"${FILESDIR}/${PN}-4.1.3-dots-in-usernames.patch"
-)
+#PATCHES=(
+#	"${FILESDIR}/${PN}-4.1.3-dots-in-usernames.patch"
+#	"${FILESDIR}/${P}-libsubid_pam_linking.patch"
+#	"${FILESDIR}/${P}-libsubid_oot_build.patch"
+#	"${FILESDIR}/shadow-4.9-libcrack.patch"
+#	"${FILESDIR}/shadow-4.9-SHA-rounds.patch"
+#)
 
 src_prepare() {
 	default
@@ -61,12 +73,10 @@ src_prepare() {
 src_configure() {
 	local myeconfargs=(
 		--disable-account-tools-setuid
-		--enable-shared=no
-		--enable-static=yes
-		--without-btrfs
+		--with-btrfs
 		--without-group-name-max-length
 		--without-tcb
-		--disable-subordinate-ids
+		--disable-man
 		$(use_enable nls)
 		$(use_with acl)
 		$(use_with audit)
@@ -110,6 +120,9 @@ set_login_opt() {
 
 src_install() {
 	emake DESTDIR="${D}" suidperms=4711 install
+
+	# 4.9 regression: https://github.com/shadow-maint/shadow/issues/389
+	emake DESTDIR="${D}" install
 
 	# Remove libshadow and libmisc; see bug 37725 and the following
 	# comment from shadow's README.linux:
@@ -198,9 +211,9 @@ src_install() {
 
 		# remove manpages that pam will install for us
 		# and/or don't apply when using pam
-		find "${ED}"/usr/share/man -type f \
-			'(' -name 'limits.5*' -o -name 'suauth.5*' ')' \
-			-delete
+#		find "${ED}"/usr/share/man -type f \
+#			'(' -name 'limits.5*' -o -name 'suauth.5*' ')' \
+#			-delete
 
 		# Remove pam.d files provided by pambase.
 		rm "${ED}"/etc/pam.d/{login,passwd} || die
@@ -210,15 +223,15 @@ src_install() {
 	fi
 
 	# Remove manpages that are handled by other packages
-	find "${ED}"/usr/share/man \
-		'(' -name id.1 -o -name passwd.5 -o -name getspnam.3 ')' \
-		-delete
+#	find "${ED}"/usr/share/man -type f \
+#		'(' -name id.1 -o -name getspnam.3 ')' \
+#		-delete
 
-	cd "${S}" || die
-	dodoc ChangeLog NEWS TODO
-	newdoc README README.download
-	cd doc || die
-	dodoc HOWTO README* WISHLIST *.txt
+#	cd "${S}" || die
+#	dodoc ChangeLog NEWS TODO
+#	newdoc README README.download
+#	cd doc || die
+#	dodoc HOWTO README* WISHLIST *.txt
 }
 
 pkg_preinst() {
