@@ -55,6 +55,7 @@
 * libcaca-9999
 * libcap-9999
 * libcurl-debian
+* libexif-9999
 * libffi-9999
 * libfontenc-9999
 * libgcrypt-9999
