@@ -25,7 +25,7 @@ K_SECURITY_UNSUPPORTED="1"
 K_WANT_GENPATCHES="base extras"
 
 SHPV="5.13"
-SHPPV="r1"
+SHPPV="r2"
 
 inherit git-r3 kernel-2 optfeature
 
