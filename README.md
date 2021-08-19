@@ -54,6 +54,7 @@
 * iortcw-sp-9999
 * iproute2-9999
 * libassuan-9999
+* libb2-9999
 * libcaca-9999
 * libcap-9999
 * libcurl-debian
