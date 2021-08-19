@@ -23,6 +23,7 @@
 * dash-9999
 * dbus-9999
 * dbus-glib-9999
+* dxvk-async-9999
 * efibootmgr-9999
 * elfutils-9999
 * etlegacy-9999
