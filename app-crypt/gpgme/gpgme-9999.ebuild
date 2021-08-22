@@ -3,7 +3,7 @@
 
 EAPI=7
 
-PYTHON_COMPAT=( python3_{8..10} )
+PYTHON_COMPAT=( python3_10 )
 DISTUTILS_OPTIONAL=1
 
 inherit autotools distutils-r1 flag-o-matic libtool qmake-utils toolchain-funcs
@@ -13,7 +13,7 @@ HOMEPAGE="http://www.gnupg.org/related_software/gpgme"
 
 if [[ ${PV} == 9999 ]]; then
         inherit git-r3
-        EGIT_REPO_URI="https://github.com/gpg/${PN}.git"
+        EGIT_REPO_URI="https://dev.gnupg.org/source/${PN}.git"
 fi
 
 LICENSE="GPL-2 LGPL-2.1"
