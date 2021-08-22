@@ -115,6 +115,7 @@
 * libXtst-9999
 * libXv-9999
 * libXxf86vm-9999
+* linux-headers-5.13.X (uses current stable)
 * lz4-9999
 * mesa-9999 (builds against llvm-9999)
 * mkfontscale-9999
