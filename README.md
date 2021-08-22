@@ -38,6 +38,7 @@
 * git-9999-r1 (2.31.0_rc0-optional-cvs.patch removed)
 * glew-9999 (requires FEATURES="-network-sandbox")
 * glib-9999
+* glib-utils-9999
 * gmp-9999
 * gnupg-9999
 * gnutls-9999 (requires FEATURES="-network-sandbox")
