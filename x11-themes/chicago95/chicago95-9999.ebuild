@@ -22,7 +22,7 @@ IUSE="+gtk login-sound plymouth sound"
 
 DEPEND=""
 RDEPEND="
-	gtk? ( x11-libs/gtk+:* )
+	gtk? ( x11-libs/gtk+:2 )
 	login-sound? ( media-sound/sox )
 	plymouth? ( sys-boot/plymouth )
 "
