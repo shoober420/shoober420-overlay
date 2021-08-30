@@ -1,0 +1,28 @@
+From b9fb6c1ab897fc63ef589cd6951f1404ab340ba3 Mon Sep 17 00:00:00 2001
+From: Rhys Perry <pendingchaos02@gmail.com>
+Date: Mon, 30 Aug 2021 10:42:34 +0100
+Subject: [PATCH] aco: include utility in isel
+
+For std::exchange().
+
+Signed-off-by: Rhys Perry <pendingchaos02@gmail.com>
+Fixes: c1d11bb92c9 ("aco: Add loop creation helpers.")
+---
+ src/amd/compiler/aco_instruction_selection.cpp | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/src/amd/compiler/aco_instruction_selection.cpp b/src/amd/compiler/aco_instruction_selection.cpp
+index 31c25ddb68b..dbe9895f5db 100644
+--- a/src/amd/compiler/aco_instruction_selection.cpp
++++ b/src/amd/compiler/aco_instruction_selection.cpp
+@@ -40,6 +40,7 @@
+ #include <map>
+ #include <numeric>
+ #include <stack>
++#include <utility>
+ #include <vector>
+ 
+ namespace aco {
+-- 
+GitLab
+
