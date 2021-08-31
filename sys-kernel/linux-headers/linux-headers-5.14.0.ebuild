@@ -8,12 +8,13 @@ H_SUPPORTEDARCH="alpha amd64 arc arm arm64 avr32 cris frv hexagon hppa ia64 m68k
 inherit kernel-2 toolchain-funcs
 detect_version
 
+SHPV="5.14"
 PATCH_PV=${PV} # to ease testing new versions against not existing patches
 PATCH_VER="1"
 SRC_URI="
 	${KERNEL_URI}
-	${PATCH_VER:+https://dev.gentoo.org/~soap/distfiles/gentoo-headers-5.13-${PATCH_VER}.tar.xz}"
-S="${WORKDIR}/linux-5.13"
+	${PATCH_VER:+https://dev.gentoo.org/~soap/distfiles/gentoo-headers-${SHPV}-${PATCH_VER}.tar.xz}"
+S="${WORKDIR}/linux-${SHPV}"
 
 KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~riscv ~s390 ~sparc ~x86 ~amd64-linux ~x86-linux"
 
@@ -21,7 +22,7 @@ BDEPEND="
 	app-arch/xz-utils
 	dev-lang/perl"
 
-[[ -n ${PATCH_VER} ]] && PATCHES=( "${WORKDIR}"/5.13 )
+[[ -n ${PATCH_VER} ]] && PATCHES=( "${WORKDIR}"/${SHPV} )
 
 src_unpack() {
 	# avoid kernel-2_src_unpack
