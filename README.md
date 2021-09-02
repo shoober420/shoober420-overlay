@@ -122,6 +122,7 @@
 * linux-headers-5.13.X (uses current stable)
 * lz4-9999
 * mesa-9999 (builds against llvm-9999)
+* mingw64-runtime-9999
 * mkfontscale-9999
 * ncurses-9999
 * netpbm-9999
