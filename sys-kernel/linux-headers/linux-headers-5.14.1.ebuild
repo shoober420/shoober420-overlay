@@ -9,7 +9,7 @@ inherit kernel-2 toolchain-funcs
 detect_version
 
 SHPV="5.14"
-SHPPV="5.14"
+SHPPV="5.13"
 PATCH_PV=${PV} # to ease testing new versions against not existing patches
 PATCH_VER="1"
 SRC_URI="
