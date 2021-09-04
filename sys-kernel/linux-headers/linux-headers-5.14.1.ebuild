@@ -8,7 +8,7 @@ H_SUPPORTEDARCH="alpha amd64 arc arm arm64 avr32 cris frv hexagon hppa ia64 m68k
 inherit kernel-2 toolchain-funcs
 detect_version
 
-SHPV="5.14"
+SHPV="5.14.1"
 SHPPV="5.13"
 PATCH_PV=${PV} # to ease testing new versions against not existing patches
 PATCH_VER="1"
