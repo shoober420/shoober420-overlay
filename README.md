@@ -39,6 +39,7 @@
 * glew-9999 (requires FEATURES="-network-sandbox")
 * glib-9999
 * glib-utils-9999
+* glibc-9999 (no patchset)
 * gmp-9999
 * gnupg-9999
 * gnutls-9999 (requires FEATURES="-network-sandbox")
