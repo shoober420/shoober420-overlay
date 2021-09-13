@@ -143,7 +143,7 @@
 * procps-9999
 * pulseaudio-9999
 * rgb-9999
-* rust-1.54.0 (use nghttp3)
+* rust-1.55.0 (use nghttp3 and llvm-9999)
 * sdl2-image-9999
 * sdl2-mixer-9999
 * sdl2-net-9999
