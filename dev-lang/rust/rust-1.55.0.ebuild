@@ -3,7 +3,7 @@
 
 EAPI=7
 
-PYTHON_COMPAT=( python3_{7..9} )
+PYTHON_COMPAT=( python3_{7..10} )
 
 inherit bash-completion-r1 check-reqs estack flag-o-matic llvm multiprocessing \
 	multilib-build python-any-r1 rust-toolchain toolchain-funcs verify-sig
@@ -49,7 +49,7 @@ IUSE="clippy cpu_flags_x86_sse2 debug doc miri nightly parallel-compiler rls rus
 
 # How to use it:
 # List all the working slots in LLVM_VALID_SLOTS, newest first.
-LLVM_VALID_SLOTS=( 12 )
+LLVM_VALID_SLOTS=( 14 )
 LLVM_MAX_SLOT="${LLVM_VALID_SLOTS[0]}"
 
 # splitting usedeps needed to avoid CI/pkgcheck's UncheckableDep limitation
