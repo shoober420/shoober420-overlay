@@ -160,6 +160,7 @@
 * util-macros-9999
 * vkquake-9999
 * wayst-9999
+* wireless-regdb-9999
 * xbitmaps-9999
 * xcb-proto-9999
 * xdg-user-dirs-9999
