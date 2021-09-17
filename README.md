@@ -16,6 +16,7 @@
 * cairo-9999 (1.16.0-binutils-2.34.patch removed)
 * chicago95-9999
 * chocolate-doom-9999
+* colm-9999
 * compose-tables-9999
 * coreutils-9999 (requires FEATURES="-network-sandbox")
 * cups-9999 (1.4.4-nostrip.patch removed)
@@ -142,6 +143,7 @@
 * pipewire-9999 (revert-openaptx-restriction.patch removed)
 * procps-9999
 * pulseaudio-9999
+* ragel-9999
 * rgb-9999
 * rust-1.55.0 (use nghttp3 and llvm-9999)
 * sdl2-image-9999
