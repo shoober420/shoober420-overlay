@@ -5,7 +5,7 @@ EAPI=7
 DESCRIPTION="Binary regulatory database for CRDA"
 HOMEPAGE="https://wireless.wiki.kernel.org/en/developers/regulatory/wireless-regdb"
 
-if [[ ${PV} == 9999 ]]; then
+if [[ ${PV} == 99999999 ]]; then
 	inherit git-r3
 	EGIT_REPO_URI="https://git.kernel.org/pub/scm/linux/kernel/git/sforshee/wireless-regdb.git"
 fi
