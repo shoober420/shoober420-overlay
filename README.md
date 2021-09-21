@@ -61,6 +61,7 @@
 * iproute2-9999
 * iputils-9999
 * isl-9999
+* jsoncpp-9999
 * libassuan-9999
 * libb2-9999
 * libcaca-9999
