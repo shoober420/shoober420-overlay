@@ -135,6 +135,7 @@
 * nss-9999
 * openal-9999
 * openldap-9999
+* openresolv-9999
 * p11-kit-9999
 * pam-9999
 * pango-9999
@@ -155,6 +156,7 @@
 * shared-mime-info-9999
 * speexdsp-9999
 * sqlite-9999
+* swig-9999
 * texinfo-9999
 * tiff-3.9.7-r1
 * tiff-9999
