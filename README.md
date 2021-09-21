@@ -147,6 +147,7 @@
 * procps-9999
 * pulseaudio-9999
 * ragel-9999
+* re2c-9999
 * rgb-9999
 * rhash-9999
 * rtl8812au-9999
