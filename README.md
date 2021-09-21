@@ -101,6 +101,7 @@
 * libXaw-9999
 * libxcb-9999
 * libXcomposite-9999
+* libxcrypt-9999
 * libXcursor-9999
 * libXdamage-9999
 * libXdmcp-9999
