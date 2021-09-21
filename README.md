@@ -148,6 +148,7 @@
 * pulseaudio-9999
 * ragel-9999
 * rgb-9999
+* rhash-9999
 * rtl8812au-9999
 * rust-1.55.0 (use nghttp3 and llvm-9999)
 * sdl2-image-9999
