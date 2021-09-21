@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit toolchain-funcs
+inherit autotools toolchain-funcs
 
 DESCRIPTION="Simplified Wrapper and Interface Generator"
 HOMEPAGE="http://www.swig.org/ https://github.com/swig/swig"
@@ -27,6 +27,12 @@ DEPEND="${RDEPEND}"
 BDEPEND="virtual/pkgconfig"
 
 DOCS=( ANNOUNCE CHANGES CHANGES.current README TODO )
+
+src_prepare() {
+	default
+#	eautoreconf
+	./autogen.sh || die
+}
 
 src_configure() {
 	econf \
