@@ -9,7 +9,7 @@ HOMEPAGE="https://roy.marples.name/projects/openresolv"
 if [[ ${PV} == 9999 ]]; then
 	inherit git-r3
 	EGIT_REPO_URI="https://github.com/NetworkConfiguration/${PN}.git"
-else
+fi
 
 LICENSE="BSD-2"
 SLOT="0"
