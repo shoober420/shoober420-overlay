@@ -15,12 +15,6 @@ if [[ ${PV} == 9999 ]]; then
         EGIT_REPO_URI="https://git.code.sf.net/p/${PN}/${PN}"
 fi
 
-#SRC_URI="mirror://sourceforge/${PN}/${MY_PN}source-${MY_PV}.tgz
-#	mirror://sourceforge/${PN}/gamedata-all-${DATA_PV}.tgz
-#	demo? ( mirror://sourceforge/${PN}/${MY_PN}demo-pakfiles-${DEMO_PV}.tgz )
-#	hexenworld? ( mirror://sourceforge/${PN}/hexenworld-pakfiles-${HW_PV}.tgz )
-#	lights? ( mirror://sourceforge/${PN}/${MY_PN}-litfiles-${LIT_PV}.zip )"
-
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
@@ -111,8 +105,8 @@ src_compile() {
 		emake \
 			${g_opts} \
 			${c_opts} \
-			glh2						|| die "emake Hexen II opengl failed"
-#			h2			                        || die "emake Hexen II software failed"
+			h2                                              || die "emake Hexen II software failed"  # software mode is needed for original true look
+#			glh2						|| die "emake Hexen II opengl failed"
 
 		if use gtk ; then
 			cd ${S}/launcher
@@ -139,7 +133,7 @@ src_compile() {
 				${g_opts} \
 				${c_opts} \
 				${gl}hw \
-				-C client 					|| die "emake Hexenworld Client (${gl}hw) failed"
+				-C client 					|| die "emake Hexenworld Client failed"
 		fi
 	fi
 
@@ -181,23 +175,11 @@ src_compile() {
 }
 
 src_install() {
-	if use demo ; then
-		insinto "${dir}"/data1/maps
-		doins ${WORKDIR}/data1/maps/demo*				|| die "doins maps/demo* failed"
-		rm -rf ${WORKDIR}/data1/maps
-	else
-		insinto "${dir}"
-#		doins -r ${WORKDIR}/portals					|| die "doins portals failed"
-		rm -f ${WORKDIR}/data1/maps/demo*
-	fi
-
-	insinto "${dir}"
-#	doins -r ${WORKDIR}/data1						|| die "doins data1 failed"
-
 	dodoc docs/README{,.hwcl,.hwmaster,.hwsv,.music}			|| die "dodoc failed"
 
 	if use client ; then
-		dobin engine/hexen2/glhexen2		|| die "glhexen2 failed"
+		dobin engine/hexen2/hexen2              || die "hexen2 failed"    # software mode is needed for original look
+#		dobin engine/hexen2/glhexen2		|| die "glhexen2 failed"
 
 		if use gtk ; then
 			dobin launcher/h2launcher	|| die "h2launcher failed"
@@ -209,8 +191,8 @@ src_install() {
 			insinto "${dir}"
 			doins -r ${WORKDIR}/hw
 
-			dobin engine/hexenworld/server/hwsv		|| die "newgamesbin hwsv failed"
-			dobin engine/hexenworld/client/hwcl	|| die "newgamesbin ${gl}hwcl failed"
+			dobin engine/hexenworld/server/hwsv		|| die "hwsv failed"
+			dobin engine/hexenworld/client/hwcl	|| die "hwcl failed"
 
 			doicon engine/resource/hexenworld.png			|| die "doicon hexenworld.png failed"
 		fi
@@ -220,7 +202,7 @@ src_install() {
 		insinto "${dir}"/data1
 		doins -r ${WORKDIR}/siege/server.cfg				|| die "doins server.cfg failed"
 
-		dobin engine/hexen2/server/h2ded ${MY_PN}-ded		|| die "newgamesbin h2ded failed"
+		dobin engine/hexen2/server/h2ded ${MY_PN}-ded		|| die "h2ded failed"
 	fi
 
 	if use tools ; then
