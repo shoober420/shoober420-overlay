@@ -192,7 +192,8 @@ src_install() {
 	fi
 
 	insinto "${dir}"
-#	doins -r ${WORKDIR}/data1     # /usr/share/games/hexen2/data1				|| die "doins data1 failed"
+#	doins -r ${WORKDIR}/data1    || die "doins data1 failed"
+#       ~/.hexen2/data1    (directory to put pak files in)
 
 	dodoc docs/README{,.hwcl,.hwmaster,.hwsv,.music}			|| die "dodoc failed"
 
