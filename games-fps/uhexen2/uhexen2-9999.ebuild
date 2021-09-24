@@ -1,6 +1,5 @@
 # Copyright 1999-2021 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
 
 EAPI=8
 
@@ -13,7 +12,7 @@ HOMEPAGE="http://uhexen2.sourceforge.net/"
 
 if [[ ${PV} == 9999 ]]; then
         inherit git-r3
-        EGIT_REPO_URI="https://git.code.sf.net/p/uhexen2/uhexen2"
+        EGIT_REPO_URI="https://git.code.sf.net/p/${PN}/${PN}"
 fi
 
 #SRC_URI="mirror://sourceforge/${PN}/${MY_PN}source-${MY_PV}.tgz
@@ -80,8 +79,8 @@ src_prepare() {
 src_compile() {
 	local g_opts=""
 
-	use debug	&& g_opts+=" DEBUG=1"
-	use demo	&& g_opts+=" DEMO=1"
+	use debug	&& g_opts+=" DEBUG=0"
+	use demo	&& g_opts+=" DEMO=0"
 
 	local c_opts=" \
 		SDLQUAKE=2 \
@@ -112,7 +111,8 @@ src_compile() {
 		emake \
 			${g_opts} \
 			${c_opts} \
-			${gl}h2							|| die "emake Hexen II (${gl}h2) failed"
+			glh2						|| die "emake Hexen II opengl failed"
+#			h2			                        || die "emake Hexen II software failed"
 
 		if use gtk ; then
 			cd ${S}/launcher
@@ -192,16 +192,15 @@ src_install() {
 	fi
 
 	insinto "${dir}"
-#	doins -r ${WORKDIR}/data1    || die "doins data1 failed"
-#       ~/.hexen2/data1    (directory to put pak files in)
+#	doins -r ${WORKDIR}/data1						|| die "doins data1 failed"
 
 	dodoc docs/README{,.hwcl,.hwmaster,.hwsv,.music}			|| die "dodoc failed"
 
 	if use client ; then
-		dobin engine/hexen2/hexen2		|| die "hexen2 failed"
+		dobin engine/hexen2/glhexen2		|| die "glhexen2 failed"
 
 		if use gtk ; then
-			dobin launcher/h2launcher	|| die "newgamesbin h2launcher failed"
+			dobin launcher/h2launcher	|| die "h2launcher failed"
 		fi
 
 		if use hexenworld ; then
