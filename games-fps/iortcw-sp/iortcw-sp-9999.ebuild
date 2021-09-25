@@ -119,6 +119,6 @@ src_install() {
 	# Install renderer libraries, wrt bug #449510
 	# this should be done through 'dogameslib', but
 	# for this some files need to be patched
-	exeinto "/usr/$(get_libdir)/${PN}"
+	exeinto "/usr/$(get_libdir)/rtcw"
 	doexe renderer*.so
 }
