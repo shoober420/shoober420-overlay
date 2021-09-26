@@ -121,4 +121,5 @@ src_install() {
 	# for this some files need to be patched
 	exeinto "/usr/$(get_libdir)/rtcw"
 	doexe renderer*.so
+        dosym /usr/lib64/rtcw/renderer_mp_rend2_x86_64.so /usr/lib64/rtcw/renderer_mp_opengl2_x86_64.so
 }
