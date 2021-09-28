@@ -97,10 +97,10 @@ MULTILIB_CHOST_TOOLS=(
 	/usr/bin/curl-config
 )
 
-PATCHES=(
-	"${FILESDIR}"/${PN}-7.30.0-prefix.patch
-	"${FILESDIR}"/${PN}-respect-cflags-3.patch
-)
+#PATCHES=(
+#	"${FILESDIR}"/${PN}-7.30.0-prefix.patch
+#	"${FILESDIR}"/${PN}-respect-cflags-3.patch
+#)
 
 src_prepare() {
 	default
