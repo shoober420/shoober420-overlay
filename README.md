@@ -168,6 +168,7 @@
 * tiff-3.9.7-r1
 * tiff-9999
 * tyrquake-9999
+* ut99-patch-469
 * uhexen2-9999 (sdl2 patch)
 * util-linux-9999 (no ruby)
 * util-macros-9999
