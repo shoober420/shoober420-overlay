@@ -209,13 +209,13 @@ multilib_src_install_all() {
 		dosym ../../../usr/share/alsa/alsa.conf.d/99-pipewire-default.conf /etc/alsa/conf.d/99-pipewire-default.conf
 	fi
 
-	if ! use systemd; then
-		insinto /etc/xdg/autostart
-		newins "${FILESDIR}"/pipewire.desktop pipewire.desktop
+#	if ! use systemd; then
+#		insinto /etc/xdg/autostart
+#		newins "${FILESDIR}"/pipewire.desktop pipewire.desktop
 
-		exeinto /usr/libexec
-		newexe "${FILESDIR}"/pipewire-launcher.sh pipewire-launcher
-	fi
+#		exeinto /usr/libexec
+#		newexe "${FILESDIR}"/pipewire-launcher.sh pipewire-launcher
+#	fi
 }
 
 pkg_postinst() {
