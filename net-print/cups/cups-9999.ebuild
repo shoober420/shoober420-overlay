@@ -65,10 +65,10 @@ RDEPEND="${DEPEND}
 "
 PDEPEND=">=net-print/cups-filters-1.0.43"
 
-PATCHES=(
-	"${FILESDIR}/${PN}-2.2.6-fix-install-perms.patch"
+#PATCHES=(
+#	"${FILESDIR}/${PN}-2.2.6-fix-install-perms.patch"
 #	"${FILESDIR}/${PN}-1.4.4-nostrip.patch"
-)
+#)
 
 MULTILIB_CHOST_TOOLS=(
 	/usr/bin/cups-config
@@ -233,10 +233,10 @@ multilib_src_install_all() {
 		$(usex zeroconf avahi-daemon '')
 		$(usex dbus dbus '')
 	)
-	[[ -n ${neededservices[@]} ]] && neededservices="need ${neededservices[@]}"
-	cp "${FILESDIR}"/cupsd.init.d-r3 "${T}"/cupsd || die
-	sed -i -e "s/@neededservices@/${neededservices}/" "${T}"/cupsd || die
-	doinitd "${T}"/cupsd
+#	[[ -n ${neededservices[@]} ]] && neededservices="need ${neededservices[@]}"
+#	cp "${FILESDIR}"/cupsd.init.d-r3 "${T}"/cupsd || die
+#	sed -i -e "s/@neededservices@/${neededservices}/" "${T}"/cupsd || die
+#	doinitd "${T}"/cupsd
 
 	if use pam; then
 		pamd_mimic_system cups auth account
@@ -248,8 +248,7 @@ multilib_src_install_all() {
 			"${ED}"/etc/xinetd.d/cups-lpd || die
 		# it is safer to disable this by default, bug #137130
 		grep -w 'disable' "${ED}"/etc/xinetd.d/cups-lpd || \
-			{ sed -i -e "s:}:	disable = yes
-}:" "${ED}"/etc/xinetd.d/cups-lpd || die ; }
+			{ sed -i -e "s:}:\tdisable = yes\n}:" "${ED}"/etc/xinetd.d/cups-lpd || die ; }
 		# write permission for file owner (root), bug #296221
 		fperms u+w /etc/xinetd.d/cups-lpd
 	else
