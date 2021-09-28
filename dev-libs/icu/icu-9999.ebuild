@@ -32,11 +32,11 @@ MULTILIB_CHOST_TOOLS=(
 	/usr/bin/icu-config
 )
 
-PATCHES=(
-	"${FILESDIR}/${PN}-65.1-remove-bashisms.patch"
-	"${FILESDIR}/${PN}-64.2-darwin.patch"
-	"${FILESDIR}/${PN}-68.1-nonunicode.patch"
-)
+#PATCHES=(
+#	"${FILESDIR}/${PN}-65.1-remove-bashisms.patch"
+#	"${FILESDIR}/${PN}-64.2-darwin.patch"
+#	"${FILESDIR}/${PN}-68.1-nonunicode.patch"
+#)
 
 src_prepare() {
 	default
