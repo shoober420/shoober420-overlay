@@ -26,6 +26,6 @@ S="${WORKDIR}"
 src_install() {
 	# install data patch
 	cd "${WORKDIR}"
-	insinto /usr/share/games/ut
+	insinto /usr/share/games/ut99
 	doins -r *
 }
