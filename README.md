@@ -135,7 +135,6 @@
 * netpbm-9999
 * nettle-9999
 * networkmanager-9999
-* nftables-9999
 * npth-9999
 * nspr-9999
 * nss-9999
