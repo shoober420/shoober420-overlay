@@ -52,10 +52,6 @@ DEPEND="${RDEPEND}"
 PDEPEND="!x86-winnt? ( app-eselect/eselect-fontconfig )
 	virtual/ttf-fonts"
 
-PATCHES=(
-	"${FILESDIR}"/${PN}-2.10.2-docbook.patch # 310157
-)
-
 MULTILIB_CHOST_TOOLS=( /usr/bin/fc-cache$(get_exeext) )
 
 pkg_setup() {
