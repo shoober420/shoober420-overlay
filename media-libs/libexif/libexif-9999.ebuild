@@ -26,10 +26,6 @@ BDEPEND="
 	doc? ( app-doc/doxygen )
 	nls? ( sys-devel/gettext )"
 
-PATCHES=(
-	"${FILESDIR}"/${PN}-0.6.13-pkgconfig.patch
-)
-
 src_prepare() {
 	default
 	sed -i -e '/FLAGS=/s:-g::' configure.ac || die #390249
