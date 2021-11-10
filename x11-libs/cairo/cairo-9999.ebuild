@@ -57,6 +57,11 @@ REQUIRED_USE="
 	gles2-only? ( !opengl )
 "
 
+PATCHES=(
+	"${FILESDIR}"/${PN}-1.12.18-disable-test-suite.patch
+	"${FILESDIR}"/${PN}-respect-fontconfig.patch
+)
+
 src_prepare() {
 	default
 
