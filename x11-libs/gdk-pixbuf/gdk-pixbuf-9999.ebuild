@@ -46,6 +46,12 @@ MULTILIB_CHOST_TOOLS=(
 	/usr/bin/gdk-pixbuf-query-loaders$(get_exeext)
 )
 
+PATCHES=(
+	# Do not run lowmem test on uclibc
+	# See https://bugzilla.gnome.org/show_bug.cgi?id=756590
+	"${FILESDIR}"/${PN}-2.32.3-fix-lowmem-uclibc.patch
+)
+
 src_prepare() {
 	xdg_src_prepare
 	
