@@ -187,6 +187,7 @@ multilib_src_configure() {
 		--disable-directx
 		--disable-rpath
 		--disable-render-d3d
+                --disable-hidapi
 		$(use_with X x)
 	)
 
