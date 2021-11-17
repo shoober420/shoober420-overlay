@@ -3,7 +3,7 @@
 
 EAPI=7
 
-inherit autotools flag-o-matic multilib-minimal usr-ldscript
+inherit flag-o-matic multilib-minimal toolchain-funcs usr-ldscript
 
 DESCRIPTION="Standard informational utilities and process-handling tools"
 HOMEPAGE="http://procps-ng.sourceforge.net/ https://gitlab.com/procps-ng/procps"
@@ -21,7 +21,7 @@ RESTRICT="!test? ( test )"
 
 DEPEND="
 	elogind? ( sys-auth/elogind )
-	ncurses? ( >=sys-libs/ncurses-5.7-r7:=[unicode?] )
+	ncurses? ( >=sys-libs/ncurses-5.7-r7:=[unicode(+)?] )
 	selinux? ( sys-libs/libselinux[${MULTILIB_USEDEP}] )
 	systemd? ( sys-apps/systemd[${MULTILIB_USEDEP}] )
 "
@@ -47,12 +47,24 @@ PATCHES=(
 )
 
 src_prepare() {
-        default
-#        eautoreconf
-        ./autogen.sh || die
+	default
+	./autogen.sh || die
+	# Please drop this after 3.3.17 and instead use --disable-w on musl.
+	# bug #794997
+	use elibc_musl && eapply "${FILESDIR}"/${PN}-3.3.17-musl-fix.patch
 }
 
 multilib_src_configure() {
+	if tc-is-cross-compiler ; then
+		# This isn't ideal but upstream don't provide a placement
+		# when malloc is missing anyway, leading to errors like:
+		# pslog.c:(.text.startup+0x108): undefined reference to `rpl_malloc'
+		# See https://sourceforge.net/p/psmisc/bugs/71/
+		# (and https://lists.gnu.org/archive/html/autoconf/2011-04/msg00019.html)
+		export ac_cv_func_malloc_0_nonnull=yes \
+			ac_cv_func_realloc_0_nonnull=yes
+	fi
+
 	# http://www.freelists.org/post/procps/PATCH-enable-transparent-large-file-support
 	append-lfs-flags #471102
 	local myeconfargs=(
@@ -69,8 +81,8 @@ multilib_src_configure() {
 	ECONF_SOURCE="${S}" econf "${myeconfargs[@]}"
 }
 
-multilib_src_compile() {
-	emake #check </dev/null #461302
+multilib_src_test() {
+	emake check </dev/null #461302
 }
 
 multilib_src_install() {
@@ -84,7 +96,7 @@ multilib_src_install() {
 			mv "${ED}"/usr/bin/kill "${ED}"/bin/ || die
 		fi
 
-		gen_usr_ldscript -a procps
+#		gen_usr_ldscript -a procps
 	fi
 }
 
