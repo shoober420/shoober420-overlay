@@ -311,6 +311,11 @@ multilib_src_install_all() {
 		docinto html
 		dodoc -r doc/html/
 	fi
+
+#	dosym /usr/lib/libncurses.so /usr/lib/libncurses.so.5
+#	dosym /usr/lib64/libncurses.so /usr/lib64/libncurses.so.5 
+#	dosym /usr/lib/libncursesw.so /usr/lib/libncursesw.so.5                                                                                                                                
+#        dosym /usr/lib64/libncursesw.so /usr/lib64/libncursesw.so.5 
 }
 
 pkg_preinst() {
