@@ -3,7 +3,7 @@
 
 EAPI=7
 
-PYTHON_COMPAT=( python3_{7,8,9} )
+PYTHON_COMPAT=( python3_{8..10} )
 inherit autotools flag-o-matic linux-info python-any-r1 readme.gentoo-r1 systemd virtualx multilib-minimal
 
 DESCRIPTION="A message bus system, a simple way for applications to talk to each other"
@@ -63,20 +63,21 @@ DOC_CONTENTS="
 # out of sources build dir for make check
 TBD="${WORKDIR}/${P}-tests-build"
 
-PATCHES=(
-	"${FILESDIR}/${PN}-daemon-optional.patch" # bug #653136
-)
-
 pkg_setup() {
 	use test && python-any-r1_pkg_setup
 
 	if use kernel_linux; then
 		CONFIG_CHECK="~EPOLL"
 		linux-info_pkg_setup
-  fi
+	fi
 }
 
 src_prepare() {
+	# Tests were restricted because of this
+#	sed -i \
+#		-e 's/.*bus_dispatch_test.*/printf ("Disabled due to excess noise\\n");/' \
+#		-e '/"dispatch"/d' \
+#		bus/test-main.c || die
 
 	default
 
@@ -123,7 +124,7 @@ multilib_src_configure() {
 		$(use_enable selinux libaudit)
 		--disable-apparmor
 		$(use_enable kernel_linux inotify)
-		$(use_enable kernel_FreeBSD kqueue)
+#		$(use_enable kernel_FreeBSD kqueue)
 		$(use_enable elogind)
 		$(use_enable systemd)
 		$(use_enable user-session)
@@ -159,7 +160,7 @@ multilib_src_configure() {
 			--disable-daemon
 			--disable-selinux
 			--disable-libaudit
-			--disable-elogind
+			--enable-elogind
 			--disable-systemd
 			--without-x
 		)
@@ -238,10 +239,14 @@ multilib_src_install_all() {
 	# https://bugs.gentoo.org/761763
 	rm -rf "${ED}"/usr/lib/sysusers.d
 
+	#dodoc AUTHORS ChangeLog NEWS README doc/TODO
+	#readme.gentoo_create_doc
+
 	find "${ED}" -name '*.la' -delete || die
 }
 
 pkg_postinst() {
+#	readme.gentoo_print_elog
 
 	# Ensure unique id is generated and put it in /etc wrt #370451 but symlink
 	# for DBUS_MACHINE_UUID_FILE (see tools/dbus-launch.c) and reverse
