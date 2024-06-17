@@ -28,10 +28,12 @@ HOMEPAGE="https://wiki.linuxfoundation.org/networking/iputils"
 
 LICENSE="BSD GPL-2+ rdisc"
 SLOT="0"
-IUSE="+arping caps clockdiff doc gcrypt idn ipv6 nettle nls rarpd rdisc ssl static tftpd tracepath traceroute6"
+IUSE="+arping caps clockdiff doc gcrypt idn ipv6 nettle nls rarpd rdisc ssl static test tftpd tracepath traceroute6"
+RESTRICT="!test? ( test )"
 
 BDEPEND="
 	virtual/pkgconfig
+	test? ( sys-apps/iproute2 )
 	nls? ( sys-devel/gettext )
 "
 
@@ -77,16 +79,18 @@ src_configure() {
 		-DBUILD_ARPING="$(usex arping true false)"
 		-DBUILD_CLOCKDIFF="$(usex clockdiff true false)"
 		-DBUILD_PING="true"
-		-DBUILD_RARPD="$(usex rarpd true false)"
-		-DBUILD_RDISC="$(usex rdisc true false)"
-		-DENABLE_RDISC_SERVER="$(usex rdisc true false)"
-		-DBUILD_TFTPD="$(usex tftpd true false)"
+#		-DBUILD_RARPD="$(usex rarpd true false)"
+#		-DBUILD_RDISC="$(usex rdisc true false)"
+#		-DENABLE_RDISC_SERVER="$(usex rdisc true false)"
+#		-DBUILD_TFTPD="$(usex tftpd true false)"
 		-DBUILD_TRACEPATH="$(usex tracepath true false)"
-		-DBUILD_NINFOD="false"
-		-DNINFOD_MESSAGES="false"
+#		-DBUILD_TRACEROUTE6="$(usex ipv6 $(usex traceroute6 true false) false)"
+#		-DBUILD_NINFOD="false"
+#		-DNINFOD_MESSAGES="false"
 		-DNO_SETCAP_OR_SUID="true"
 		-Dsystemdunitdir="$(systemd_get_systemunitdir)"
 		-DUSE_GETTEXT="$(usex nls true false)"
+		$(meson_use !test SKIP_TESTS)
 	)
 
 	if [[ "${PV}" == 99999999 ]] ; then
