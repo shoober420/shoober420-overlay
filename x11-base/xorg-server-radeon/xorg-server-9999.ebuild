@@ -7,6 +7,7 @@ XORG_DOC=doc
 XORG_TARBALL_SUFFIX="xz"
 inherit xorg-3 meson
 EGIT_REPO_URI="https://gitlab.freedesktop.org/xorg/xserver.git"
+#EGIT_COMMIT="d3c52df16105de5ac37e196a49b173e426caf417"
 XORG_EAUTORECONF="no"
 
 DESCRIPTION="X.Org X servers"
@@ -110,7 +111,7 @@ src_configure() {
 		$(meson_use ipv6)
 		$(meson_use debug)
 		$(meson_use unwind libunwind)
-		$(meson_use !minimal dri)
+		$(meson_use !minimal dri1)
 		$(meson_use !minimal dri2)
 		$(meson_use !minimal dri3)
 		$(meson_use !minimal glx)
@@ -133,10 +134,10 @@ src_configure() {
 		-Dsecure-rpc=false
 		-Dxkb_output_dir="${EPREFIX}/var/lib/xkb"
 		-Dhal=false
-		-Dlinux_acpi=false
+		-Dlinux_acpi=true
 		-Ddtrace=false
 		-Dsha1=libcrypto
-		-Dxorg=false
+		-Dxorg=true
 		-Dxwayland_eglstream=false
 		-Dxwin=false
 		-Dxquartz=false
@@ -155,6 +156,16 @@ src_configure() {
 		-Ddocs=false
 		-Ddevel-docs=false
 		-Ddocs-pdf=false
+		-Dinput_thread=true
+		-Dsuid_wrapper=false
+		-Dpciaccess=true
+		-Dvgahw=false
+		-Dxf86bigfont=false
+		-Dxace=false
+		-Dxselinux=false
+		-Dxcsecurity=false
+		-Dlibunwind=false
+		-Dxpbproxy=false		
 		-Dxwayland-path="${EPREFIX}"/usr/bin
 		-Ddefault_font_path="${EPREFIX}"/usr/share/fonts
 	)
