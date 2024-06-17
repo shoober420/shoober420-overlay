@@ -140,4 +140,7 @@ multilib_src_install_all() {
 		docinto examples
 		dodoc doc/examples/*.c
 	fi
+
+	dosym /usr/lib/libgnutls.so /usr/lib/libgnutls.so.26
+	dosym /usr/lib64/libgnutls.so /usr/lib64/libgnutls.so.26
 }
