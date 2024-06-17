@@ -38,7 +38,7 @@ RDEPEND="
 	>=x11-libs/pixman-0.36.0[${MULTILIB_USEDEP}]
 	gles2-only? ( >=media-libs/mesa-9.1.6[gles2,${MULTILIB_USEDEP}] )
 	glib? ( >=dev-libs/glib-2.34.3:2[${MULTILIB_USEDEP}] )
-	opengl? ( >=media-libs/mesa-9.1.6[egl,X(+),${MULTILIB_USEDEP}] )
+	opengl? ( >=media-libs/mesa-9.1.6[egl(+),X(+),${MULTILIB_USEDEP}] )
 	X? (
 		>=x11-libs/libXrender-0.9.8[${MULTILIB_USEDEP}]
 		>=x11-libs/libXext-1.3.2[${MULTILIB_USEDEP}]
@@ -65,6 +65,10 @@ PATCHES=(
 src_prepare() {
 	default
 
+#	if has_version ">=sys-libs/binutils-libs-2.34"; then
+#		eapply "${FILESDIR}"/${PN}-1.16.0-binutils-2.34.patch
+#	fi
+
 	# tests and perf tools require X, bug #483574
 	if ! use X; then
 		sed -e '/^SUBDIRS/ s#boilerplate test perf# #' -i Makefile.am || die
@@ -85,7 +89,7 @@ multilib_src_configure() {
 
 	[[ ${CHOST} == *-interix* ]] && append-flags -D_REENTRANT
 
-	use elibc_FreeBSD && myopts+=" --disable-symbol-lookup"
+#	use elibc_FreeBSD && myopts+=" --disable-symbol-lookup"
 
 	# [[ ${PV} == *9999* ]] && myopts+=" $(use_enable doc gtk-doc)"
 
