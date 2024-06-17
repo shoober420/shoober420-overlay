@@ -17,7 +17,7 @@ fi
 LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~alpha amd64 arm arm64 ~hppa ~ia64 ~mips ppc ppc64 ~riscv ~s390 sparc x86 ~amd64-linux ~x86-linux ~ppc-macos"
-IUSE="debug static-libs"
+IUSE="debug gles static-libs"
 
 # enabling GLES support seems to cause build failures
 RDEPEND=">=virtual/glu-9.0-r1[${MULTILIB_USEDEP}]
@@ -26,14 +26,14 @@ RDEPEND=">=virtual/glu-9.0-r1[${MULTILIB_USEDEP}]
 	>=x11-libs/libXext-1.3.2[${MULTILIB_USEDEP}]
 	>=x11-libs/libXi-1.7.2[${MULTILIB_USEDEP}]
 	>=x11-libs/libXrandr-1.4.2[${MULTILIB_USEDEP}]
-	>=x11-libs/libXxf86vm-1.1.3[${MULTILIB_USEDEP}]"
-# gles? ( media-libs/mesa[egl,gles1,gles2,${MULTILIB_USEDEP}] )
+	>=x11-libs/libXxf86vm-1.1.3[${MULTILIB_USEDEP}]
+        gles? ( media-libs/mesa[egl,gles1,gles2,${MULTILIB_USEDEP}] )"
 DEPEND="${RDEPEND}
 	x11-base/xorg-proto"
 BDEPEND="virtual/pkgconfig"
 
 #PATCHES=( "${FILESDIR}"/${PN}-3.2.1-gcc10-fno-common.patch )
-HTML_DOCS=( doc/. )
+#HTML_DOCS=( doc/. )
 
 #subversion_src_unpack() {
 #    default
@@ -45,7 +45,7 @@ subversion_src_prepare() {
 
 src_configure() {
 	local mycmakeargs=(
-#		"-DOpenGL_GL_PREFERENCE=GLVND" # bug 721006
+		"-DOpenGL_GL_PREFERENCE=GLVND" # bug 721006
 		"-DFREEGLUT_GLES=OFF"
 		"-DFREEGLUT_BUILD_DEMOS=OFF"
 		"-DFREEGLUT_BUILD_STATIC_LIBS=$(usex static-libs ON OFF)"
