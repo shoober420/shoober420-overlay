@@ -43,7 +43,7 @@ multilib_src_configure() {
 	local emesonargs=(
 		-Dintrospection="$(multilib_native_usex introspection enabled disabled)"
 		-Dtests=disabled
-                -Dgtk-doc=disabled
+                -Dgtk_doc=false
 	)
         meson_src_configure
 }
