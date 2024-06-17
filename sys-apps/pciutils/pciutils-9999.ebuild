@@ -31,7 +31,7 @@ DEPEND="
 "
 RDEPEND="
 	${DEPEND}
-	sys-apps/hwids
+	sys-fs/udev
 "
 BDEPEND="kmod? ( virtual/pkgconfig )"
 
