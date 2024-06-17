@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
-PYTHON_COMPAT=( python3_{7,8,9} )
+PYTHON_COMPAT=( python3_{8..10} )
 
 inherit flag-o-matic gnome.org gnome2-utils linux-info meson multilib multilib-minimal python-any-r1 toolchain-funcs xdg
 
@@ -16,7 +16,7 @@ fi
 
 LICENSE="LGPL-2.1+"
 SLOT="2"
-IUSE="dbus debug +elf elibc_glibc fam gtk-doc kernel_linux +mime selinux static-libs sysprof systemtap test utils xattr"
+IUSE="dbus debug +elf elibc_glibc gtk-doc kernel_linux +mime selinux static-libs sysprof systemtap test utils xattr"
 RESTRICT="!test? ( test )"
 
 KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~riscv ~s390 ~sparc ~x86 ~amd64-linux ~x86-linux"
@@ -41,7 +41,6 @@ RDEPEND="
 	selinux? ( >=sys-libs/libselinux-2.2.2-r5[${MULTILIB_USEDEP}] )
 	xattr? ( !elibc_glibc? ( >=sys-apps/attr-2.4.47-r1[${MULTILIB_USEDEP}] ) )
 	!kernel_Winnt? ( virtual/libelf:0= )
-	fam? ( >=virtual/fam-0-r1[${MULTILIB_USEDEP}] )
 	sysprof? ( >=dev-util/sysprof-capture-3.38:4[${MULTILIB_USEDEP}] )
 "
 DEPEND="${RDEPEND}"
@@ -166,13 +165,12 @@ multilib_src_configure() {
 		$(meson_feature selinux)
 		$(meson_use xattr)
 		-Dlibmount=enabled # only used if host_system == 'linux'
-		-Dinternal_pcre=false
+#		-Dinternal_pcre=false
 		-Dman=true
 		$(meson_use systemtap dtrace)
 		$(meson_use systemtap)
 		$(meson_feature sysprof)
 		-Dgtk_doc=$(multilib_native_usex gtk-doc true false)
-		$(meson_use fam)
 		$(meson_use test tests)
 		-Dinstalled_tests=false
 		-Dnls=enabled
