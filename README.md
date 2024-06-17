@@ -1,5 +1,7 @@
 # shoober420-overlay
 
+/var/db/repos/localrepo
+
 * acl-9999
 * alsa-lib-9999
 * alsa-plugins-9999
