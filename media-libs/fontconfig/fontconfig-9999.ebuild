@@ -54,9 +54,9 @@ PDEPEND="!x86-winnt? ( app-eselect/eselect-fontconfig )
 
 MULTILIB_CHOST_TOOLS=( /usr/bin/fc-cache$(get_exeext) )
 
-PATCHES=(
-	"${FILESDIR}"/${PN}-2.10.2-docbook.patch # 310157
-)
+#PATCHES=(
+#        "${FILESDIR}"/${PN}-2.10.2-docbook.patch # 310157
+#)
 
 pkg_setup() {
 	DOC_CONTENTS="Please make fontconfig configuration changes using
