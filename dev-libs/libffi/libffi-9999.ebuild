@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
-inherit multilib-minimal autotools
+inherit multilib-minimal autotools #preserve-libs
 
 MY_PV=${PV/_rc/-rc}
 MY_P=${PN}-${MY_PV}
@@ -16,9 +16,9 @@ if [[ ${PV} == 9999 ]]; then
 fi
 
 LICENSE="MIT"
-SLOT="0/7" # SONAME=libffi.so.7
+SLOT="0/7" # SONAME=libffi.so.8
 KEYWORDS="~alpha amd64 arm arm64 hppa ~ia64 ~m68k ~mips ppc ppc64 ~riscv ~s390 sparc x86 ~x64-cygwin ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="debug pax_kernel static-libs test"
+IUSE="debug exec-static-trampoline pax_kernel static-libs test"
 
 RESTRICT="!test? ( test )"
 
@@ -69,12 +69,24 @@ multilib_src_configure() {
 	#    We use /usr/$(get_libdir)/... to have ABI identifier.
 	econf \
 		--includedir="${EPREFIX}"/usr/$(get_libdir)/${PN}/include \
+		--disable-multi-os-directory \
+		$(use_enable exec-static-trampoline exec-static-tramp) \
 		$(use_enable static-libs static) \
 		$(use_enable pax_kernel pax_emutramp) \
 		$(use_enable debug)
 }
 
-#multilib_src_install_all() {
-#	find "${ED}" -name "*.la" -delete || die
-#	einstalldocs
+multilib_src_install_all() {
+	find "${ED}" -name "*.la" -delete || die
+	einstalldocs
+}
+
+#pkg_preinst() {
+#	preserve_old_lib /usr/$(get_libdir)/libffi.so.7
+#	preserve_old_lib /usr/$(get_libdir)/libffi.so.6
+#}
+
+#pkg_postinst() {                                                                                                                                                                                
+#        preserve_old_lib_notify /usr/$(get_libdir)/libffi.so.7
+#	preserve_old_lib_notify /usr/$(get_libdir)/libffi.so.6                                                                                                                                       
 #}
