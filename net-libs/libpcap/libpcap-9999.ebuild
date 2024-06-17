@@ -46,7 +46,7 @@ fi
 
 PATCHES=(
 #	"${FILESDIR}"/${PN}-1.9.1-pcap-config.patch
-	"${FILESDIR}"/${PN}-1.10.0-usbmon.patch
+#	"${FILESDIR}"/${PN}-1.10.0-usbmon.patch
 	"${FILESDIR}"/${PN}-9999-prefix-darwin.patch
 )
 
@@ -70,7 +70,7 @@ multilib_src_configure() {
 		$(use_enable usb) \
 		$(use_enable yydebug) \
 		$(use_with netlink libnl) \
-		--enable-ipv6
+		--disable-ipv6
 }
 
 multilib_src_compile() {
@@ -78,7 +78,7 @@ multilib_src_compile() {
 }
 
 multilib_src_install_all() {
-	dodoc CREDITS CHANGES VERSION TODO README.* doc/README.*
+#	dodoc CREDITS CHANGES VERSION TODO README.* doc/README.*
 
 	# remove static libraries (--disable-static does not work)
 	if ! use static-libs; then
