@@ -47,9 +47,9 @@ MULTILIB_CHOST_TOOLS=(
 )
 
 PATCHES=(
-	# Do not run lowmem test on uclibc
-	# See https://bugzilla.gnome.org/show_bug.cgi?id=756590
-	"${FILESDIR}"/${PN}-2.32.3-fix-lowmem-uclibc.patch
+        # Do not run lowmem test on uclibc
+        # See https://bugzilla.gnome.org/show_bug.cgi?id=756590
+        "${FILESDIR}"/${PN}-2.32.3-fix-lowmem-uclibc.patch
 )
 
 src_prepare() {
@@ -67,12 +67,14 @@ multilib_src_configure() {
 		-Dnative_windows_loaders=false
 		-Dinstalled_tests=false
 		-Dgio_sniffing=true
+		-Dgtk_doc=false
+		-Ddocs=false
+		-Dman=false
 	)
 	if multilib_is_native_abi; then
 		emesonargs+=(
-			$(meson_use gtk-doc gtk_docs)
 			$(meson_feature introspection)
-			-Dman=true
+			-Dman=false
 		)
 	else
 		emesonargs+=(
