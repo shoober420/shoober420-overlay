@@ -103,6 +103,12 @@ multilib_src_install() {
 	insinto /usr/lib64
 	doins ${WORKDIR}/${PN}-${PV}/lib/libGLEW.so*
 
+	insinto /usr/lib
+	doins ${WORKDIR}/${PN}-${PV}/lib/libGLEW.so*
+
+	insinto /usr/lib/pkgconfig
+	doins ${WORKDIR}/${PN}-${PV}/glew.pc*
+
 	insinto /usr/lib64/pkgconfig
 	doins ${WORKDIR}/${PN}-${PV}/glew.pc* 
 
