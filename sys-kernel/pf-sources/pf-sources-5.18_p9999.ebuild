@@ -3,7 +3,7 @@
 # Joonas Niilola (juippis)
 # Vincent Grande (shoober420)
 
-EAPI=6
+EAPI=7
 
 # Define what default functions to run
 ETYPE="sources"
@@ -24,7 +24,7 @@ K_SECURITY_UNSUPPORTED="1"
 # already included in pf-sources
 K_WANT_GENPATCHES="base extras"
 
-SHPV="5.15"
+SHPV="5.18"
 SHPPV="r1"
 
 inherit git-r3 kernel-2 optfeature
