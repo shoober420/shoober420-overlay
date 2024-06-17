@@ -90,7 +90,7 @@ multilib_src_install() {
         cmake_src_install
 }
 
-#multilib_src_install_all() {
+multilib_src_install_all() {
 #	einstalldocs
 
 #	doman doc/xmlwf.1
@@ -106,4 +106,7 @@ multilib_src_install() {
 #	fi
 
 #	find "${D}" -name '*.la' -type f -delete || die
-#}
+
+	dosym /usr/lib/libexpat.so /usr/lib/libexpatw.so.1
+	dosym /usr/lib64/libexpat.so /usr/lib64/libexpatw.so.1
+}
