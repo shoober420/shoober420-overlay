@@ -1,9 +1,9 @@
 # Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
-inherit autotools flag-o-matic toolchain-funcs multilib-minimal
+inherit autotools flag-o-matic multilib-minimal
 
 MY_P="SDL2-${PV}"
 DESCRIPTION="Simple Direct Media Layer"
@@ -12,23 +12,26 @@ HOMEPAGE="https://www.libsdl.org/"
 if [[ ${PV} == 9999 ]]; then
         inherit git-r3
         EGIT_REPO_URI="https://github.com/libsdl-org/SDL.git"
-#	EGIT_COMMIT="9170c0c7f8d3deebb60fff4a88e074de1c37a2f5"
+#       EGIT_COMMIT="9170c0c7f8d3deebb60fff4a88e074de1c37a2f5"
 fi
 
 LICENSE="ZLIB"
 SLOT="0"
-KEYWORDS="~alpha ~amd64 ~arm ~arm64 ~hppa ~ia64 ppc ~ppc64 sparc ~x86"
+KEYWORDS="~alpha amd64 arm arm64 ~hppa ~ia64 ppc ppc64 ~riscv sparc x86"
 
-IUSE="alsa aqua cpu_flags_ppc_altivec cpu_flags_x86_3dnow cpu_flags_x86_mmx cpu_flags_x86_sse cpu_flags_x86_sse2 custom-cflags dbus fcitx4 gles2 haptic ibus jack +joystick kms libsamplerate nas opengl oss pulseaudio +sound static-libs +threads udev +video video_cards_vc4 vulkan wayland X xinerama xscreensaver"
+IUSE="alsa aqua cpu_flags_ppc_altivec cpu_flags_x86_3dnow cpu_flags_x86_mmx cpu_flags_x86_sse cpu_flags_x86_sse2 custom-cflags dbus doc fcitx4 gles1 gles2 haptic ibus jack +joystick kms libsamplerate nas opengl oss pipewire pulseaudio sndio +sound static-libs +threads udev +video video_cards_vc4 vulkan wayland X xinerama xscreensaver"
 REQUIRED_USE="
 	alsa? ( sound )
 	fcitx4? ( dbus )
+	gles1? ( video )
 	gles2? ( video )
+	haptic? ( joystick )
 	ibus? ( dbus )
 	jack? ( sound )
 	nas? ( sound )
 	opengl? ( video )
 	pulseaudio? ( sound )
+	sndio? ( sound )
 	vulkan? ( video )
 	wayland? ( gles2 )
 	xinerama? ( X )
@@ -38,12 +41,13 @@ CDEPEND="
 	alsa? ( >=media-libs/alsa-lib-1.0.27.2[${MULTILIB_USEDEP}] )
 	dbus? ( >=sys-apps/dbus-1.6.18-r1[${MULTILIB_USEDEP}] )
 	fcitx4? ( app-i18n/fcitx:4 )
+	gles1? ( media-libs/mesa[${MULTILIB_USEDEP},gles1] )
 	gles2? ( >=media-libs/mesa-9.1.6[${MULTILIB_USEDEP},gles2] )
 	ibus? ( app-i18n/ibus )
 	jack? ( virtual/jack[${MULTILIB_USEDEP}] )
 	kms? (
 		>=x11-libs/libdrm-2.4.82[${MULTILIB_USEDEP}]
-		>=media-libs/mesa-9.0.0[${MULTILIB_USEDEP},gbm]
+		>=media-libs/mesa-9.0.0[${MULTILIB_USEDEP},gbm(+)]
 	)
 	libsamplerate? ( media-libs/libsamplerate[${MULTILIB_USEDEP}] )
 	nas? (
@@ -54,11 +58,13 @@ CDEPEND="
 		>=virtual/opengl-7.0-r1[${MULTILIB_USEDEP}]
 		>=virtual/glu-9.0-r1[${MULTILIB_USEDEP}]
 	)
+	pipewire? ( media-video/pipewire:=[${MULTILIB_USEDEP}] )
 	pulseaudio? ( >=media-sound/pulseaudio-2.1-r1[${MULTILIB_USEDEP}] )
+	sndio? ( media-sound/sndio:=[${MULTILIB_USEDEP}] )
 	udev? ( >=virtual/libudev-208:=[${MULTILIB_USEDEP}] )
 	wayland? (
 		>=dev-libs/wayland-1.0.6[${MULTILIB_USEDEP}]
-		>=media-libs/mesa-9.1.6[${MULTILIB_USEDEP},egl,gles2,wayland]
+		>=media-libs/mesa-9.1.6[${MULTILIB_USEDEP},egl(+),gles2,wayland]
 		>=x11-libs/libxkbcommon-0.2.0[${MULTILIB_USEDEP}]
 	)
 	X? (
@@ -80,6 +86,10 @@ DEPEND="${CDEPEND}
 "
 BDEPEND="
 	virtual/pkgconfig
+	doc? (
+		app-doc/doxygen
+		media-gfx/graphviz
+	)
 "
 
 MULTILIB_WRAPPED_HEADERS=(
@@ -87,6 +97,10 @@ MULTILIB_WRAPPED_HEADERS=(
 	/usr/include/SDL2/SDL_platform.h
 	/usr/include/SDL2/begin_code.h
 	/usr/include/SDL2/close_code.h
+)
+
+PATCHES=(
+	"${FILESDIR}"/${PN}-2.0.16-static-libs.patch
 )
 
 S="${WORKDIR}/${PN}-${PV}"
@@ -104,9 +118,6 @@ src_prepare() {
 	# https://bugs.gentoo.org/764959
 	AT_NOEAUTOHEADER="yes" AT_M4DIR="/usr/share/aclocal acinclude" \
 		eautoreconf
-
-	# libsdl2-2.0.14 build regression. Please check if still needed
-	multilib_copy_sources
 }
 
 multilib_src_configure() {
@@ -146,13 +157,15 @@ multilib_src_configure() {
 		$(use_enable jack)
 		--disable-jack-shared
 		--disable-esd
+		$(use_enable pipewire)
+		--disable-pipewire-shared
 		$(use_enable pulseaudio)
 		--disable-pulseaudio-shared
 		--disable-arts
 		$(use_enable libsamplerate)
 		$(use_enable nas)
 		--disable-nas-shared
-		--disable-sndio
+		$(use_enable sndio)
 		--disable-sndio-shared
 		$(use_enable sound diskaudio)
 		$(use_enable sound dummyaudio)
@@ -177,7 +190,7 @@ multilib_src_configure() {
 		--disable-kmsdrm-shared
 		$(use_enable video video-dummy)
 		$(use_enable opengl video-opengl)
-		--disable-video-opengles1
+		$(use_enable gles1 video-opengles1)
 		$(use_enable gles2 video-opengles2)
 		$(use_enable vulkan video-vulkan)
 		$(use_enable udev libudev)
@@ -187,16 +200,24 @@ multilib_src_configure() {
 		--disable-directx
 		--disable-rpath
 		--disable-render-d3d
-                --enable-hidapi
 		$(use_with X x)
 	)
 
-	#ECONF_SOURCE="${S}"
+	ECONF_SOURCE="${S}" \
 	econf "${myeconfargs[@]}"
 }
 
 multilib_src_compile() {
 	emake V=1
+}
+
+src_compile() {
+	multilib-minimal_src_compile
+
+	if use doc; then
+		cd docs || die
+		doxygen || die
+	fi
 }
 
 multilib_src_install() {
@@ -207,4 +228,18 @@ multilib_src_install_all() {
 	# Do not delete the static .a libraries here as some are
 	# mandatory. They may be needed even when linking dynamically.
 	find "${ED}" -type f -name "*.la" -delete || die
+
+	dodoc {BUGS,CREDITS,README-SDL,TODO,WhatsNew}.txt README.md docs/README*.md
+#	doman debian/sdl2-config.1
+	use doc && dodoc -r docs/output/html/
+
+
+	dosym /usr/lib/libSDL2-2.0.so.0 /usr/lib/libSDL2-2.0.so.1
+	dosym /usr/lib64/libSDL2-2.0.so.0 /usr/lib64/libSDL2-2.0.so.1
+	dosym /usr/lib/libSDL2-2.0.so.0 /usr/lib/libSDL-2.0.so.1                                                                                                                        
+        dosym /usr/lib64/libSDL2-2.0.so.0 /usr/lib64/libSDL-2.0.so.1
+	dosym /usr/lib/libSDL2-2.0.so.0 /usr/lib/libSDL-2.0.so
+        dosym /usr/lib64/libSDL2-2.0.so.0 /usr/lib64/libSDL-2.0.so
+        dosym /usr/lib/libSDL2-2.0.so.0 /usr/lib/libSDL-2.0.so.0
+        dosym /usr/lib64/libSDL2-2.0.so.0 /usr/lib64/libSDL-2.0.so.0
 }
