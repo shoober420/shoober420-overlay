@@ -34,6 +34,7 @@
 * expat-9999
 * freeglut-9999
 * flac-9999
+* fltk-9999
 * fluidsynth-9999
 * font-util-9999
 * fontconfig-9999
@@ -42,6 +43,7 @@
 * gettext-9999 (requires FEATURES="-network-sandbox")
 * git-9999-r1 (2.31.0_rc0-optional-cvs.patch removed)
 * glew-9999 (requires FEATURES="-network-sandbox")
+* glfw-9999
 * glib-9999
 * glib-utils-9999
 * glibc-9999 (no patchset)
@@ -78,16 +80,19 @@
 * libgudev-9999
 * libICE-9999
 * libidn-9999 (requires FEATURES="-network-sandbox" / git-9999-r1)
+* libidn-compat
 * libidn2-9999 (requires FEATURES="-network-sandbox")
 * libinput-9999
 * libjpeg-turbo-9999
 * libksba-9999
+* libmikmod-9999
 * libmnl-9999
 * libndp-9999
 * libnm-glib-9999
 * libogg-9999
 * libpcap-9999
 * libpciaccess-9999
+* libpipeline-9999
 * libpng-9999
 * librsvg-9999 (requires FEATURES="-network-sandbox")
 * libsdl-9999
@@ -100,6 +105,9 @@
 * libunwind-9999
 * libusb-9999
 * libvorbis-9999
+* libvpx-1.3.0
+* libvpx-9999
+* libwebp-9999
 * libX11-9999
 * libXau-9999
 * libXaw-9999
@@ -143,6 +151,8 @@
 * openal-9999
 * openldap-9999
 * openresolv-9999
+* opus-9999
+* opusfile-9999
 * p11-kit-9999
 * pam-9999
 * pango-9999
@@ -163,6 +173,7 @@
 * sdl2-ttf-9999
 * shadow-9999
 * shared-mime-info-9999
+* speex-9999
 * speexdsp-9999
 * sqlite-9999
 * swig-9999
@@ -183,6 +194,7 @@
 * xdg-user-dirs-9999
 * xdg-utils-9999
 * xf86-input-libinput-9999
+* xfsprogs-9999
 * xinit-9999
 * xkbcomp-9999
 * xorg-server-9999 (nvidia/x11)
