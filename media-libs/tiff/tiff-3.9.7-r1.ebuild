@@ -1,7 +1,7 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2021 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=5
+EAPI=6
 
 # this ebuild is only for the libtiff.so.3 (+ 4) and libtiffxx.so.3 (+ 4) SONAME for ABI compat
 
@@ -23,11 +23,17 @@ RDEPEND="jpeg? ( >=virtual/jpeg-0-r2[${MULTILIB_USEDEP}] )
 	!=media-libs/tiff-3*:0"
 DEPEND="${RDEPEND}"
 
+
+PATCHES=(
+	"${FILESDIR}/tiff-3.9.7-CVE-2012-4447.patch"
+	"${FILESDIR}/tiff-3.9.7-CVE-2012-4564.patch"
+	"${FILESDIR}/tiff-3.9.7-CVE-2012-5581.patch"
+	"${FILESDIR}/tiff-3.9.7-tiffinfo-exif.patch"
+	"${FILESDIR}/tiff-3.9.7-printdir-width.patch"
+)
+
 src_prepare() {
-	epatch \
-		"${FILESDIR}"/${P}-CVE-2012-{4447,4564,5581}.patch \
-		"${FILESDIR}"/${P}-tiffinfo-exif.patch \
-		"${FILESDIR}"/${P}-printdir-width.patch
+	default
 
 	elibtoolize
 }
