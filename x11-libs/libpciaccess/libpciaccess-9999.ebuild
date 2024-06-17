@@ -14,7 +14,7 @@ IUSE="zlib"
 DEPEND="
 	zlib? (	>=sys-libs/zlib-1.2.8-r1:=[${MULTILIB_USEDEP}] )"
 RDEPEND="${DEPEND}
-	sys-apps/hwids"
+	sys-fs/udev"
 
 src_prepare() {
 	# Let autotools install scanpci (#765706)
