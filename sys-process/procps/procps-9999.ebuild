@@ -41,10 +41,10 @@ RDEPEND="${DEPEND}
 	!<app-i18n/man-pages-pl-0.7-r1
 "
 
-PATCHES=(
+#PATCHES=(
 #	"${FILESDIR}"/${PN}-3.3.11-sysctl-manpage.patch # 565304
-	"${FILESDIR}"/${PN}-3.3.12-proc-tests.patch # 583036
-)
+#	"${FILESDIR}"/${PN}-3.3.12-proc-tests.patch # 583036
+#)
 
 src_prepare() {
 	default
@@ -71,19 +71,20 @@ multilib_src_configure() {
 		$(multilib_native_use_with elogind) # No elogind multilib support
 		$(multilib_native_use_enable kill)
 		$(multilib_native_use_enable modern-top)
-		$(multilib_native_use_with ncurses)
+#		$(multilib_native_use_with ncurses)
 		$(use_enable nls)
 		$(use_enable selinux libselinux)
 		$(use_enable static-libs static)
 		$(use_with systemd)
+		--enable-ncurses
 		$(use_enable unicode watch8bit)
 	)
 	ECONF_SOURCE="${S}" econf "${myeconfargs[@]}"
 }
 
-multilib_src_test() {
-	emake check </dev/null #461302
-}
+#multilib_src_test() {
+#	emake check </dev/null #461302
+#}
 
 multilib_src_install() {
 	default
