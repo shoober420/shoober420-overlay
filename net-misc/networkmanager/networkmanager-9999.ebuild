@@ -4,7 +4,7 @@
 EAPI=7
 GNOME_ORG_MODULE="NetworkManager"
 VALA_USE_DEPEND="vapigen"
-PYTHON_COMPAT=( python3_{7..10} )
+PYTHON_COMPAT=( python3_{8..10} )
 
 inherit meson xdg bash-completion-r1 linux-info multilib python-any-r1 systemd readme.gentoo-r1 vala udev multilib-minimal
 
@@ -180,7 +180,7 @@ multilib_src_configure() {
 		-Dnmcli=false
 		-Ddbus_conf_dir=/etc/dbus-1/system.d
 		-Dudev_dir="$(get_udevdir)"
-		-Dconfig-plugins-default=keyfile
+#		-Dconfig-plugins-default=keyfile
 		-Diptables=/sbin/iptables
 		-Debpf=true
 		-Dconcheck=false
@@ -216,7 +216,7 @@ multilib_src_configure() {
 		-Dwext=false
 		-Dvapi=false
 		-Ddocs=false
-		-Dfirewall_zone=false
+#		-Dfirewall_zone=false
 		-Dmore_asserts=0
 		-Dmore_logging=false
 		-Dld_gc=false
