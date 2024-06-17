@@ -65,7 +65,7 @@ multilib_src_install() {
 }
 
 multilib_src_install_all() {
-	einstalldocs
+#	einstalldocs
 
 	find "${ED}" -type f -name "*.la" -delete || die
 }
