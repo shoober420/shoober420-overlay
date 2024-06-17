@@ -64,4 +64,10 @@ multilib_src_install_all() {
 	if ! use static-libs ; then
 		find "${ED}" -type f -name "*.la" -delete || die
 	fi
+
+	dosym /usr/lib/libacl.so /usr/lib/libacl.so.0
+	dosym /usr/lib64/libacl.so /usr/lib64/libacl.so.0
+
+	dosym /lib64/libacl.so.1.1.2301	/usr/lib64/libacl.so.1.1.2301                                                                                                                        
+        dosym /lib64/libacl.so.1 /usr/lib64/libacl.so.1
 }
