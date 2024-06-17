@@ -343,10 +343,10 @@ build_contrib_module() {
 
 src_configure() {
 	# Bug 408001
-	use elibc_FreeBSD && append-cppflags -DMDB_DSYNC=O_SYNC -DMDB_FDATASYNC=fsync
+#	use elibc_FreeBSD && append-cppflags -DMDB_DSYNC=O_SYNC -DMDB_FDATASYNC=fsync
 
 	# connectionless ldap per bug #342439
-	append-cppflags -DLDAP_CONNECTIONLESS
+#	append-cppflags -DLDAP_CONNECTIONLESS
 
 	multilib-minimal_src_configure
 }
@@ -684,9 +684,9 @@ multilib_src_install() {
 		ebegin "populate config with built backends"
 		for x in "${ED}"/usr/$(get_libdir)/openldap/openldap/back_*.so; do
 			einfo "Adding $(basename ${x})"
-			sed -e "/###INSERTDYNAMICMODULESHERE###$/a# moduleload	$(basename ${x})" -i "${configfile}" || die
+			sed -e "/###INSERTDYNAMICMODULESHERE###$/a# moduleload\t$(basename ${x})" -i "${configfile}" || die
 		done
-		sed -e "s:###INSERTDYNAMICMODULESHERE###$:# modulepath	${EPREFIX}/usr/$(get_libdir)/openldap/openldap:" -i "${configfile}"
+		sed -e "s:###INSERTDYNAMICMODULESHERE###$:# modulepath\t${EPREFIX}/usr/$(get_libdir)/openldap/openldap:" -i "${configfile}"
 		use prefix || fowners root:ldap /etc/openldap/slapd.conf
 		fperms 0640 /etc/openldap/slapd.conf
 		cp "${configfile}" "${configfile}".default || die
