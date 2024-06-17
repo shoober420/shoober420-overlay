@@ -62,4 +62,9 @@ multilib_src_install() {
 multilib_src_install_all() {
 	dodoc {CHANGES,README}.txt
 	find "${ED}" -type f -name "*.la" -delete || die
+
+	dosym /usr/lib/libSDL2_image-2.0.so.0 /usr/lib/libSDL_image-2.0.so
+        dosym /usr/lib64/libSDL2_image-2.0.so.0 /usr/lib64/libSDL_image-2.0.so
+        dosym /usr/lib/libSDL2_image-2.0.so.0 /usr/lib/libSDL_image-2.0.so.0
+        dosym /usr/lib64/libSDL2_image-2.0.so.0 /usr/lib64/libSDL_image-2.0.so.0
 }
